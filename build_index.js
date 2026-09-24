@@ -864,14 +864,17 @@ const htmlContent = `<!DOCTYPE html>
                 </div>
 
                 <div className="pt-2 flex flex-col items-center gap-2">
+                  {/* Enter archive button commented out for now */}
+                  {/*
                   <button
                     onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
                     className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-[12px] md:text-[13px] uppercase tracking-widest bg-black text-white hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <span>[ {lang === 'es' ? 'ENTRAR AL ARCHIVO' : 'ENTER ARCHIVE'} ]</span>
                   </button>
-                  <span className="text-[10px] text-neutral-400 tracking-widest uppercase pt-1">
-                    ↓ {lang === 'es' ? 'arrastra, desplázate o haz clic para entrar' : 'pan, scroll or click to enter'}
+                  */}
+                  <span className="text-[10px] text-neutral-400 tracking-widest uppercase pt-2">
+                    ↓ {lang === 'es' ? 'arrastra o desplázate para entrar' : 'pan or scroll to enter'}
                   </span>
                 </div>
               </div>
