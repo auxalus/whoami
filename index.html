@@ -7014,6 +7014,7 @@
     // MAIN GALLERY APPLICATION
     // ====================================================================
     function App() {
+      const [showIntro, setShowIntro] = useState(true);
       const [lang, setLang] = useState('en');
       const [view, setView] = useState('grid');
       const [selectedStory, setSelectedStory] = useState(null);
@@ -7230,13 +7231,87 @@
         <div className="relative w-full h-full overflow-hidden bg-[#FAFAFA] text-[#000000]">
 
           {/* ======================================================== */}
+          {/* STARTING SCREEN (Minimal, Same Tone, Same CSS Layout)    */}
+          {/* ======================================================== */}
+          {showIntro && (
+            <div className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] font-mono flex flex-col justify-between p-6 md:p-12 animate-page select-none">
+              
+              {/* Top Bar */}
+              <div className="flex items-center justify-between text-[13px] tracking-wide uppercase">
+                <span className="font-medium tracking-wider">197 ILLUSTRATED STORIES</span>
+                <button
+                  onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
+                  className="hover:opacity-70 transition-opacity text-[13px] uppercase tracking-wider"
+                >
+                  [ {lang === 'es' ? 'OMITIR →' : 'SKIP →'} ]
+                </button>
+              </div>
+
+              {/* Center Content: Minimal Poetic Paragraph */}
+              <div className="max-w-2xl mx-auto text-center px-4 my-auto space-y-7 animate-fadeIn">
+                <div className="text-[11px] uppercase tracking-[0.25em] text-neutral-400">
+                  MEMORIAL · ARCHIVO DIGITAL
+                </div>
+
+                <div className="space-y-5 text-[13px] md:text-sm leading-relaxed text-neutral-900 font-mono">
+                  <p>
+                    {lang === 'es'
+                      ? 'Entre las décadas de 1970 y 1980, tanto Uruguay como Argentina vivieron dictaduras cívico-militares que dejaron una profunda huella en sus sociedades.'
+                      : 'Between the 1970s and 1980s, both Uruguay and Argentina endured civic-military dictatorships that left a deep mark on their societies.'}
+                  </p>
+                  <p className="italic text-neutral-700 border-y border-neutral-200 py-3 text-[12px] md:text-[13px]">
+                    {lang === 'es'
+                      ? '“Recordar es volver a dar vida; porque solo lo que no se olvida sigue vivo.”'
+                      : '“To remember is to bring back to life; because only what is not forgotten stays alive.”'}
+                  </p>
+                  <p className="text-[12px] md:text-[13px] text-neutral-500">
+                    {lang === 'es'
+                      ? '197 historias ilustradas es un proyecto que busca compartir la vida cotidiana de cada una de las personas detenidas desaparecidas.'
+                      : '197 illustrated stories is a project that seeks to share the everyday lives and memories of each of the people forcibly disappeared.'}
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
+                    className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-[12px] md:text-[13px] uppercase tracking-widest bg-black text-white hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <span>[ {lang === 'es' ? 'ENTRAR AL ARCHIVO' : 'ENTER ARCHIVE'} ]</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Bottom Bar */}
+              <div className="flex items-center justify-between text-[11px] md:text-xs tracking-wider uppercase text-neutral-400">
+                <span>197 HISTORIAS ILUSTRADAS</span>
+                
+                <div className="flex items-center space-x-2 text-[13px] text-black font-mono">
+                  <button
+                    onClick={() => setLang('es')}
+                    className={'hover:text-black transition-colors ' + (lang === 'es' ? 'font-bold underline underline-offset-4 decoration-1' : 'text-neutral-500')}
+                  >
+                    ES
+                  </button>
+                  <span className="text-neutral-300">/</span>
+                  <button
+                    onClick={() => setLang('en')}
+                    className={'hover:text-black transition-colors ' + (lang === 'en' ? 'font-bold underline underline-offset-4 decoration-1' : 'text-neutral-500')}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================== */}
           {/* HEADER / NAVIGATION (Exact match to Stitch reference)    */}
           {/* ======================================================== */}
           <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm px-6 md:px-8 pt-7 pb-4 border-b border-transparent">
             
             {/* Primary Top Bar */}
             <div className="flex items-center justify-between text-[13px] tracking-wide uppercase font-mono">
-              <a href="#" onClick={(e) => { e.preventDefault(); centerCamera(); }} className="font-normal hover:opacity-70 transition-opacity">
+              <a href="#" onClick={(e) => { e.preventDefault(); setShowIntro(true); }} className="font-normal hover:opacity-70 transition-opacity">
                 197 ILLUSTRATED STORIES
               </a>
 
