@@ -8,7 +8,7 @@ export function ListView({ stories, onSelectStory }) {
       data-scrollable="true"
       className="relative w-full h-full pt-36 pb-32 overflow-y-auto overflow-x-hidden font-mono select-none overscroll-contain"
     >
-      {/* Interactive Memorial List with profile only visible on black bar */}
+      {/* Interactive Memorial List with profile only visible on black bar (200% size) */}
       <ul className="w-full flex flex-col py-2" role="list">
         {stories.map((story) => {
           const isActive = activeStoryId === story.id;
@@ -29,16 +29,16 @@ export function ListView({ stories, onSelectStory }) {
                 {story.name}
               </span>
 
-              {/* Profile Portrait only visible on the black bar with soft fade-in */}
-              <div className="list-portrait-thumb absolute right-6 md:right-16 lg:right-28 top-1/2 z-30">
-                <div className="w-20 h-20 md:w-24 md:h-24 bg-[#111111] border border-neutral-700 shadow-2xl overflow-hidden relative">
+              {/* Profile Portrait only visible on the black bar with soft fade-in (200% size) */}
+              <div className="list-portrait-thumb absolute right-4 md:right-12 lg:right-20 top-1/2 z-30">
+                <div className="w-40 h-40 md:w-48 md:h-48 bg-[#111111] border border-neutral-700/80 shadow-2xl overflow-hidden relative">
                   <img
                     src={story.image}
                     alt={story.name}
                     loading="lazy"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-0 right-0 left-0 bg-black/85 px-1 py-0.5 text-[8px] text-white/90 text-center truncate tracking-widest font-mono">
+                  <div className="absolute bottom-0 right-0 left-0 bg-black/85 px-2 py-1 text-[10px] text-white/95 text-center truncate tracking-widest font-mono">
                     {story.shortName || story.name}
                   </div>
                 </div>
