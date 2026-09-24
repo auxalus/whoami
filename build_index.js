@@ -11,20 +11,25 @@ const htmlContent = `<!DOCTYPE html>
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
 
-  <!-- Google Fonts: Space Mono, Inter -->
+  <!-- Google Fonts: Space Mono, IBM Plex Mono, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN with forms & container queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            mono: ['"Space Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+            mono: ['"Space Mono"', '"IBM Plex Mono"', 'Courier New', 'monospace'],
             sans: ['"Inter"', 'sans-serif']
+          },
+          colors: {
+            archiveBg: '#ffffff',
+            archiveDark: '#121212',
+            archiveMuted: '#71717a'
           }
         }
       }
@@ -60,16 +65,15 @@ const htmlContent = `<!DOCTYPE html>
     /* Thin elegant scrollbar */
     ::-webkit-scrollbar {
       width: 4px;
-      height: 4px;
     }
     ::-webkit-scrollbar-track {
-      background: #fafafa;
+      background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #d4d4d4;
+      background: #e4e4e7;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #000000;
+      background: #a1a1aa;
     }
 
     .gpu-accel {
@@ -93,6 +97,18 @@ const htmlContent = `<!DOCTYPE html>
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
       transform: translateX(0) scale(1);
+    }
+
+    /* Active List Item Memorial Highlight */
+    .names-list-item {
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .names-list-item.row-active {
+      background-color: #111111 !important;
+      color: #ffffff !important;
+    }
+    .names-list-item.row-active span {
+      color: #ffffff !important;
     }
 
     @keyframes pageFadeIn {
@@ -132,7 +148,7 @@ const htmlContent = `<!DOCTYPE html>
       { id: 'Rhythmic Stories', label: { es: 'Rhythmic Stories', en: 'Rhythmic Stories' } }
     ];
 
-    // Story-specific Ambient Narrator Audio Engine
+    // Story Audio Engine for Detail Page
     class StoryAudioEngine {
       constructor() {
         this.ctx = null;
@@ -229,7 +245,7 @@ const htmlContent = `<!DOCTYPE html>
     const storyAudio = new StoryAudioEngine();
 
     // ====================================================================
-    // FULL-PAGE ARTWORK DETAIL VIEW (Matching Reference Screenshot Exactly)
+    // FULL-PAGE ARTWORK DETAIL VIEW
     // ====================================================================
     function ArtworkDetailPage({ story, lang, setLang, onClose }) {
       const [isStoryOpen, setIsStoryOpen] = useState(true);
@@ -316,18 +332,16 @@ const htmlContent = `<!DOCTYPE html>
                   )}
                 </div>
 
-                {/* Bottom Story Audio Scrubber (Exact match to screenshot) */}
+                {/* Bottom Story Audio Scrubber */}
                 <div className="mt-8 pt-4 flex items-center space-x-3 text-[11px] font-mono text-black select-none">
                   <span className="tabular-nums font-mono">{formatTime(currentTime)}</span>
                   
-                  {/* Interactive Timeline Track */}
                   <div
                     onClick={handleTimelineClick}
                     className="flex-1 relative flex items-center h-4 cursor-pointer group"
                     title="Seek audio timeline"
                   >
                     <div className="w-full h-[1px] bg-black/40"></div>
-                    {/* Square Scrubber Pin ■ */}
                     <div
                       className="absolute top-1/2 -translate-y-1/2 text-[10px] leading-none text-black select-none transition-all"
                       style={{ left: \`\${(currentTime / duration) * 94}%\` }}
@@ -336,7 +350,6 @@ const htmlContent = `<!DOCTYPE html>
                     </div>
                   </div>
 
-                  {/* Play/Pause toggle [ ▶ ] or [ ⏸ ] */}
                   <button
                     onClick={togglePlay}
                     className="hover:opacity-70 transition-opacity font-mono text-xs px-1"
@@ -361,13 +374,11 @@ const htmlContent = `<!DOCTYPE html>
 
               {/* Right Column: Metadata Details */}
               <div className="space-y-6 text-xs font-mono">
-                {/* Name */}
                 <div className="space-y-1">
                   <div className="text-[11px] text-[#787670]">Name</div>
                   <div className="font-normal text-[13px] md:text-sm text-black leading-snug">{story.name}</div>
                 </div>
 
-                {/* 2-Column Grid Fields */}
                 <div className="grid grid-cols-2 gap-x-6 gap-y-6 pt-2">
                   <div className="space-y-1">
                     <div className="text-[11px] text-[#787670]">Place of birth</div>
@@ -428,6 +439,108 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     // ====================================================================
+    // INTERACTIVE MEMORIAL LIST VIEW WITH DYNAMIC FLOATING PREVIEW BOX
+    // ====================================================================
+    function InteractiveListView({ stories, onSelectStory }) {
+      const [activeIndex, setActiveIndex] = useState(11); // default active item #12 Arazatí Ramón
+      const [previewTop, setPreviewTop] = useState(400);
+      const listRefs = useRef([]);
+      const containerRef = useRef(null);
+
+      const activeStory = stories[activeIndex] || stories[0];
+
+      const updatePreview = (index) => {
+        setActiveIndex(index);
+        const itemEl = listRefs.current[index];
+        if (itemEl && containerRef.current) {
+          const rect = itemEl.getBoundingClientRect();
+          const itemCenterY = rect.top + rect.height / 2;
+          setPreviewTop(itemCenterY);
+        }
+      };
+
+      useEffect(() => {
+        const handleScrollOrResize = () => {
+          const itemEl = listRefs.current[activeIndex];
+          if (itemEl) {
+            const rect = itemEl.getBoundingClientRect();
+            setPreviewTop(rect.top + rect.height / 2);
+          }
+        };
+
+        const timer = setTimeout(() => {
+          updatePreview(11);
+        }, 100);
+
+        window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+        window.addEventListener('resize', handleScrollOrResize);
+        return () => {
+          clearTimeout(timer);
+          window.removeEventListener('scroll', handleScrollOrResize);
+          window.removeEventListener('resize', handleScrollOrResize);
+        };
+      }, [activeIndex]);
+
+      return (
+        <div
+          ref={containerRef}
+          data-scrollable="true"
+          className="relative w-full h-full pt-36 pb-32 overflow-y-auto overflow-x-hidden font-mono select-none scroll-smooth"
+        >
+          {/* Floating Illustration Preview Box with Individual Profile Picture */}
+          {activeStory && (
+            <aside
+              aria-hidden="true"
+              className="fixed pointer-events-none z-30 transition-all duration-300 ease-out hidden xl:block"
+              style={{
+                right: '5.5%',
+                top: \`\${previewTop}px\`,
+                transform: 'translateY(-48%)'
+              }}
+            >
+              <div className="w-48 h-48 md:w-52 md:h-52 bg-neutral-100 shadow-md border border-neutral-200/60 overflow-hidden relative group">
+                <img
+                  src={activeStory.image}
+                  alt={activeStory.name}
+                  className="w-full h-full object-cover transition-opacity duration-200"
+                />
+                <div className="absolute bottom-1 right-2 text-[9px] uppercase tracking-widest text-white/90 bg-black/60 px-1.5 py-0.5 rounded backdrop-blur-xs">
+                  {activeStory.shortName || activeStory.name}
+                </div>
+              </div>
+            </aside>
+          )}
+
+          {/* Interactive Verbatim Memorial List */}
+          <ul className="w-full flex flex-col py-2" role="list">
+            {stories.map((story, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <li
+                  key={story.id}
+                  ref={(el) => (listRefs.current[index] = el)}
+                  onClick={() => onSelectStory(story)}
+                  onMouseEnter={() => updatePreview(index)}
+                  className={\`names-list-item cursor-pointer py-[0.5rem] px-4 w-full text-center flex items-center justify-center transition-colors \${
+                    isActive ? 'row-active' : 'hover:bg-neutral-100'
+                  }\`}
+                >
+                  <span
+                    className={\`text-[13px] md:text-[14px] leading-relaxed tracking-normal select-none \${
+                      isActive ? 'text-white font-medium' : 'text-black'
+                    }\`}
+                  >
+                    {story.name}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
+
+    // ====================================================================
     // MAIN GALLERY APPLICATION
     // ====================================================================
     function App() {
@@ -460,7 +573,6 @@ const htmlContent = `<!DOCTYPE html>
       const imagesRef = useRef([]);
       const damping = 0.085;
 
-      // Grid dimensions for infinite wrap
       const cardWidth = 180;
       const cardHeight = 220;
       const colStepX = 275;
@@ -470,7 +582,6 @@ const htmlContent = `<!DOCTYPE html>
       const gridTotalW = colCount * colStepX;
       const gridTotalH = rowCount * rowStepY;
 
-      // Precalculate base coordinates for each card
       const baseCoords = useMemo(() => {
         return STORIES_DATA.map((_, i) => {
           const col = i % colCount;
@@ -485,7 +596,6 @@ const htmlContent = `<!DOCTYPE html>
         });
       }, [STORIES_DATA.length]);
 
-      // 60/120Hz Animation Frame Infinite Toroidal Wrapping Loop with Left-to-Right Image Reveal
       useEffect(() => {
         if (view !== 'grid' || selectedStory) return;
 
@@ -545,7 +655,6 @@ const htmlContent = `<!DOCTYPE html>
         };
       }, [view, selectedStory, baseCoords, gridTotalW, gridTotalH]);
 
-      // Wheel / Trackpad & Drag Listener for Unlimited Boundless 2D Panning
       useEffect(() => {
         if (view !== 'grid' || selectedStory) return;
 
@@ -622,7 +731,6 @@ const htmlContent = `<!DOCTYPE html>
         };
       }, [view, selectedStory]);
 
-      // Keyboard shortcuts
       useEffect(() => {
         const onKeyDown = (e) => {
           if (e.key === 'Escape') {
@@ -653,66 +761,58 @@ const htmlContent = `<!DOCTYPE html>
         <div className="relative w-full h-full overflow-hidden bg-[#FAFAFA] text-[#000000]">
 
           {/* ======================================================== */}
-          {/* HEADER / NAVIGATION (Exact match to reference layout)    */}
+          {/* HEADER / NAVIGATION (Exact match to Stitch reference)    */}
           {/* ======================================================== */}
-          <header className="fixed top-0 left-0 right-0 z-40 px-6 md:px-10 pt-5 pb-3 font-mono text-[13px] uppercase tracking-wider text-[#000000] pointer-events-none select-none">
+          <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm px-6 md:px-8 pt-7 pb-4 border-b border-transparent">
             
-            {/* Top Row: Left Title, Center Views, Right About */}
-            <div className="flex items-center justify-between pointer-events-auto">
-              
-              {/* Left: 197 ILLUSTRATED STORIES */}
-              <div className="flex items-center space-x-2">
-                <a href="#" onClick={(e) => { e.preventDefault(); centerCamera(); }} className="hover:opacity-75 transition-opacity text-[#000000]">
-                  <span>197 ILLUSTRATED STORIES</span>
-                </a>
-              </div>
+            {/* Primary Top Bar */}
+            <div className="flex items-center justify-between text-[13px] tracking-wide uppercase font-mono">
+              <a href="#" onClick={(e) => { e.preventDefault(); centerCamera(); }} className="font-normal hover:opacity-70 transition-opacity">
+                197 ILLUSTRATED STORIES
+              </a>
 
-              {/* Center: [ GRID ]   [ LIST ]   [ GALLERY ] */}
-              <nav className="hidden md:flex items-center space-x-6">
+              <nav aria-label="View Switcher" className="flex items-center space-x-6 text-[13px]">
                 <button
                   onClick={() => { setView('grid'); storyAudio.playTap(); }}
-                  className="hover:opacity-70 transition-opacity"
+                  className={\`transition-colors \${view === 'grid' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}\`}
                 >
-                  [ <span className={view === 'grid' ? 'underline underline-offset-4' : ''}>GRID</span> ]
+                  [ GRID ]
                 </button>
                 <button
                   onClick={() => { setView('list'); storyAudio.playTap(); }}
-                  className="hover:opacity-70 transition-opacity"
+                  className={\`transition-colors \${view === 'list' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}\`}
                 >
-                  [ <span className={view === 'list' ? 'underline underline-offset-4' : ''}>LIST</span> ]
+                  [ LIST ]
                 </button>
                 <button
                   onClick={() => { setView('gallery'); storyAudio.playTap(); }}
-                  className="hover:opacity-70 transition-opacity"
+                  className={\`transition-colors \${view === 'gallery' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}\`}
                 >
-                  [ <span className={view === 'gallery' ? 'underline underline-offset-4' : ''}>GALLERY</span> ]
+                  [ GALLERY ]
                 </button>
               </nav>
 
-              {/* Right: ABOUT THE PROJECT */}
-              <div className="flex items-center">
+              <div>
                 <button
                   onClick={() => { setIsAboutOpen(true); storyAudio.playTap(); }}
-                  className="hover:underline transition-all text-[#000000]"
+                  className="hover:opacity-70 transition-opacity text-[13px]"
                 >
                   ABOUT THE PROJECT
                 </button>
               </div>
-
             </div>
 
-            {/* Second Row: FILTERS [+] on left, SEARCH on right */}
-            <div className="flex items-center justify-between pt-4 pointer-events-auto">
+            {/* Secondary Meta Controls (Filters & Search) */}
+            <div className="flex items-center justify-between text-[13px] tracking-wider pt-7 font-mono">
               <button
                 onClick={() => { setIsFilterOpen(!isFilterOpen); storyAudio.playTap(); }}
-                className="hover:underline transition-all text-[#000000] text-[13px] uppercase"
+                className="hover:opacity-60 transition-opacity focus:outline-none flex items-center gap-1 font-normal"
               >
                 FILTERS {isFilterOpen ? '[-]' : '[+]'}
               </button>
-
               <button
                 onClick={() => { setIsSearchOpen(true); storyAudio.playTap(); }}
-                className="hover:underline transition-all text-[#000000] text-[13px] uppercase"
+                className="hover:opacity-60 transition-opacity focus:outline-none tracking-widest font-normal"
               >
                 SEARCH
               </button>
@@ -724,28 +824,32 @@ const htmlContent = `<!DOCTYPE html>
           {/* BOTTOM-RIGHT FIXED LANGUAGE SWITCHER (ES / EN)           */}
           {/* ======================================================== */}
           {!selectedStory && (
-            <div className="fixed bottom-5 right-6 z-40 font-mono text-[13px] uppercase tracking-wider text-[#000000] select-none flex items-center space-x-2 pointer-events-auto">
-              <button
-                onClick={() => setLang('es')}
-                className={'hover:opacity-70 transition-opacity ' + (lang === 'es' ? 'underline underline-offset-4' : '')}
-              >
-                ES
-              </button>
-              <span>/</span>
-              <button
-                onClick={() => setLang('en')}
-                className={'hover:opacity-70 transition-opacity ' + (lang === 'en' ? 'underline underline-offset-4' : '')}
-              >
-                EN
-              </button>
-            </div>
+            <footer className="fixed bottom-7 right-8 z-40">
+              <div className="flex items-center space-x-2 text-[13px] tracking-widest uppercase font-mono">
+                <button
+                  onClick={() => setLang('es')}
+                  aria-label="Cambiar a Español"
+                  className={\`hover:text-black transition-colors font-medium \${lang === 'es' ? 'text-black font-semibold underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-800'}\`}
+                >
+                  ES
+                </button>
+                <span className="text-neutral-400">/</span>
+                <button
+                  onClick={() => setLang('en')}
+                  aria-label="Switch to English"
+                  className={\`hover:text-black transition-colors \${lang === 'en' ? 'text-black font-semibold underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-800'}\`}
+                >
+                  EN
+                </button>
+              </div>
+            </footer>
           )}
 
           {/* ======================================================== */}
           {/* COLLAPSIBLE FILTERS MENU OVERLAY                        */}
           {/* ======================================================== */}
           {isFilterOpen && (
-            <div data-scrollable="true" className="fixed top-24 left-6 md:left-10 z-40 bg-[#FAFAFA]/95 backdrop-blur-md border border-black/15 p-5 max-w-sm w-full shadow-lg font-mono text-xs animate-fadeIn">
+            <div data-scrollable="true" className="fixed top-28 left-6 md:left-8 z-40 bg-[#FAFAFA]/95 backdrop-blur-md border border-black/15 p-5 max-w-sm w-full shadow-lg font-mono text-xs animate-fadeIn">
               <div className="flex items-center justify-between mb-3 pb-2 border-b border-black/10">
                 <span className="uppercase text-[11px] text-gray-500 font-bold tracking-wider">FILTER BY THEME</span>
                 <button onClick={() => setIsFilterOpen(false)} className="text-gray-400 hover:text-black">[✕]</button>
@@ -782,12 +886,10 @@ const htmlContent = `<!DOCTYPE html>
                       display: 'none'
                     }}
                   >
-                    {/* Top Label: e.g. '192 . Juvelino And...' */}
                     <div className="font-mono text-[11px] text-black leading-tight mb-2 truncate group-hover:text-black/70 transition-colors pointer-events-none">
                       {story.number} . {story.displayTitle}
                     </div>
 
-                    {/* Square Artwork Image with Directional Wipe Reveal ('Image Makes Itself') */}
                     <div className="w-full aspect-square bg-[#eae8e2] overflow-hidden">
                       <img
                         ref={(el) => (imagesRef.current[index] = el)}
@@ -805,46 +907,20 @@ const htmlContent = `<!DOCTYPE html>
           )}
 
           {/* ======================================================== */}
-          {/* VIEW 2: ARCHIVAL LIST REGISTRY                           */}
+          {/* VIEW 2: INTERACTIVE MEMORIAL LIST (Stitch Exact Layout)   */}
           {/* ======================================================== */}
           {view === 'list' && (
-            <div data-scrollable="true" className="w-full h-full pt-28 pb-24 px-6 md:px-16 overflow-y-auto font-mono scroll-smooth">
-              <div className="max-w-5xl mx-auto">
-                <div className="mb-6 pb-2 border-b border-black flex justify-between items-baseline">
-                  <h2 className="text-sm uppercase tracking-widest font-bold">
-                    {lang === 'es' ? 'Archivo General de Retratos' : 'General Register of Portraits'}
-                  </h2>
-                  <span className="text-xs text-gray-500">[{filteredStories.length} {lang === 'es' ? 'historias' : 'stories'}]</span>
-                </div>
-
-                <div className="divide-y divide-black/10 border-t border-black/10 text-xs">
-                  {filteredStories.map((story) => (
-                    <div
-                      key={story.id}
-                      onClick={() => openStory(story)}
-                      className="py-3 flex items-center justify-between hover:bg-black/5 px-2 transition-colors cursor-pointer group"
-                    >
-                      <div className="flex items-center space-x-6 min-w-0">
-                        <span className="w-12 text-gray-500 font-bold">{story.number}.</span>
-                        <span className="font-medium truncate group-hover:underline">{story.name}</span>
-                      </div>
-                      <div className="flex items-center space-x-6 text-gray-500 shrink-0 text-[11px]">
-                        <span>{story.city}</span>
-                        <span>{story.year}</span>
-                        <span className="group-hover:translate-x-1 transition-transform text-black">→</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <InteractiveListView
+              stories={filteredStories}
+              onSelectStory={openStory}
+            />
           )}
 
           {/* ======================================================== */}
           {/* VIEW 3: CURATED GALLERY SHOWCASE                        */}
           {/* ======================================================== */}
           {view === 'gallery' && (
-            <div data-scrollable="true" className="w-full h-full pt-28 pb-24 px-6 md:px-16 overflow-y-auto font-mono scroll-smooth">
+            <div data-scrollable="true" className="w-full h-full pt-36 pb-24 px-6 md:px-16 overflow-y-auto font-mono scroll-smooth">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                   {filteredStories.map((story) => (
@@ -1014,4 +1090,4 @@ const htmlContent = `<!DOCTYPE html>
 </html>`;
 
 fs.writeFileSync('./index.html', htmlContent, 'utf8');
-console.log('Successfully generated index.html matching artwork detail page');
+console.log('Successfully generated index.html with Stitch-styled interactive List view');
