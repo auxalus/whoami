@@ -7218,50 +7218,89 @@
         return () => window.removeEventListener('keydown', onKeyDown);
       }, []);
 
-      // --- START SCREEN SCROLL DISMISSAL LISTENER ---
+      // --- START SCREEN ANY-DIRECTION PAN & SCROLL DISMISSAL LISTENER ---
       useEffect(() => {
         if (!showIntro) return;
 
-        let touchStartY = null;
+        let isDragging = false;
+        let dragStart = { x: 0, y: 0 };
 
         const handleIntroWheel = (e) => {
-          if (Math.abs(e.deltaY) > 4 || Math.abs(e.deltaX) > 4) {
+          if (Math.abs(e.deltaX) > 1.5 || Math.abs(e.deltaY) > 1.5) {
             storyAudio.playTap();
             setShowIntro(false);
+            targetRef.current.x -= e.deltaX;
+            targetRef.current.y -= e.deltaY;
           }
         };
 
+        const handlePointerDown = (e) => {
+          if (e.target.closest('button, a')) return;
+          isDragging = true;
+          dragStart = { x: e.clientX, y: e.clientY };
+        };
+
+        const handlePointerMove = (e) => {
+          if (!isDragging) return;
+          const diffX = e.clientX - dragStart.x;
+          const diffY = e.clientY - dragStart.y;
+          const dist = Math.hypot(diffX, diffY);
+          if (dist > 3) {
+            storyAudio.playTap();
+            setShowIntro(false);
+            targetRef.current.x += diffX * 1.2;
+            targetRef.current.y += diffY * 1.2;
+            isDragging = false;
+          }
+        };
+
+        const handlePointerUp = () => {
+          isDragging = false;
+        };
+
+        let touchStart = { x: 0, y: 0 };
         const handleTouchStart = (e) => {
-          if (e.touches.length === 1) {
-            touchStartY = e.touches[0].clientY;
+          if (e.touches.length === 1 && !e.target.closest('button, a')) {
+            touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
           }
         };
 
         const handleTouchMove = (e) => {
-          if (touchStartY !== null && e.touches.length === 1) {
-            const diffY = Math.abs(e.touches[0].clientY - touchStartY);
-            if (diffY > 10) {
+          if (e.touches.length === 1) {
+            const curX = e.touches[0].clientX;
+            const curY = e.touches[0].clientY;
+            const diffX = curX - touchStart.x;
+            const diffY = curY - touchStart.y;
+            const dist = Math.hypot(diffX, diffY);
+            if (dist > 4) {
               storyAudio.playTap();
               setShowIntro(false);
-              touchStartY = null;
+              targetRef.current.x += diffX * 1.4;
+              targetRef.current.y += diffY * 1.4;
             }
           }
         };
 
         const handleIntroKeyDown = (e) => {
-          if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', 'Enter'].includes(e.code)) {
+          if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'PageDown', 'PageUp', 'Space', 'Enter'].includes(e.code)) {
             storyAudio.playTap();
             setShowIntro(false);
           }
         };
 
         window.addEventListener('wheel', handleIntroWheel, { passive: true });
+        window.addEventListener('mousedown', handlePointerDown);
+        window.addEventListener('mousemove', handlePointerMove);
+        window.addEventListener('mouseup', handlePointerUp);
         window.addEventListener('touchstart', handleTouchStart, { passive: true });
         window.addEventListener('touchmove', handleTouchMove, { passive: true });
         window.addEventListener('keydown', handleIntroKeyDown);
 
         return () => {
           window.removeEventListener('wheel', handleIntroWheel);
+          window.removeEventListener('mousedown', handlePointerDown);
+          window.removeEventListener('mousemove', handlePointerMove);
+          window.removeEventListener('mouseup', handlePointerUp);
           window.removeEventListener('touchstart', handleTouchStart);
           window.removeEventListener('touchmove', handleTouchMove);
           window.removeEventListener('keydown', handleIntroKeyDown);
@@ -7285,7 +7324,7 @@
           {/* ======================================================== */}
           {showIntro && (
             <div
-              className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] font-mono flex flex-col justify-between p-6 md:p-12 animate-page select-none"
+              className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] font-mono flex flex-col justify-between p-6 md:p-12 animate-page select-none cursor-grab active:cursor-grabbing"
             >
               
               {/* Top Bar */}
@@ -7331,7 +7370,7 @@
                     <span>[ {lang === 'es' ? 'ENTRAR AL ARCHIVO' : 'ENTER ARCHIVE'} ]</span>
                   </button>
                   <span className="text-[10px] text-neutral-400 tracking-widest uppercase pt-1">
-                    ↓ {lang === 'es' ? 'desplázate para entrar' : 'scroll to enter'}
+                    ↓ {lang === 'es' ? 'arrastra, desplázate o haz clic para entrar' : 'pan, scroll or click to enter'}
                   </span>
                 </div>
               </div>
