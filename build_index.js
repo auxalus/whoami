@@ -103,16 +103,31 @@ const htmlContent = `<!DOCTYPE html>
 
     /* Active List Item Memorial Highlight - Fixed height to avoid jumps */
     .names-list-item {
-      transition: background-color 0.12s ease, color 0.12s ease;
-      min-height: 38px;
-      height: 38px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      min-height: 40px;
+      height: 40px;
+      position: relative;
     }
-    .names-list-item.row-active {
+    .names-list-item.row-active,
+    .names-list-item:hover {
       background-color: #111111 !important;
       color: #ffffff !important;
     }
-    .names-list-item.row-active span {
+    .names-list-item.row-active span,
+    .names-list-item:hover span {
       color: #ffffff !important;
+    }
+
+    .list-portrait-thumb {
+      opacity: 0;
+      transform: translateY(-50%) scale(0.94);
+      transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .names-list-item:hover .list-portrait-thumb,
+    .names-list-item.row-active .list-portrait-thumb {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
     }
 
     @keyframes pageFadeIn {
@@ -446,59 +461,48 @@ const htmlContent = `<!DOCTYPE html>
     // JUMP-FREE SMOOTH INTERACTIVE MEMORIAL LIST VIEW
     // ====================================================================
     function InteractiveListView({ stories, onSelectStory }) {
-      const [activeIndex, setActiveIndex] = useState(0);
-      const activeStory = stories[activeIndex] || stories[0];
+      const [activeStoryId, setActiveStoryId] = useState(null);
 
       return (
         <div
           data-scrollable="true"
           className="relative w-full h-full pt-36 pb-32 overflow-y-auto overflow-x-hidden font-mono select-none overscroll-contain"
         >
-          {/* Floating Illustration Preview Box docked on the right side */}
-          {activeStory && (
-            <aside
-              aria-hidden="true"
-              className="fixed pointer-events-none z-30 transition-opacity duration-200 hidden xl:block"
-              style={{
-                right: '5.5%',
-                top: '50%',
-                transform: 'translateY(-50%)'
-              }}
-            >
-              <div className="w-52 h-52 bg-neutral-100 shadow-md border border-neutral-200/80 overflow-hidden relative group">
-                <img
-                  key={activeStory.id}
-                  src={activeStory.image}
-                  alt={activeStory.name}
-                  className="w-full h-full object-cover animate-fadeIn"
-                />
-                <div className="absolute bottom-1 right-2 text-[9px] uppercase tracking-widest text-white/90 bg-black/70 px-2 py-0.5 rounded backdrop-blur-xs font-mono">
-                  {activeStory.shortName || activeStory.name}
-                </div>
-              </div>
-            </aside>
-          )}
-
-          {/* Interactive Verbatim Memorial List with exact fixed-height items */}
+          {/* Interactive Memorial List with profile only visible on black bar */}
           <ul className="w-full flex flex-col py-2" role="list">
-            {stories.map((story, index) => {
-              const isActive = index === activeIndex;
+            {stories.map((story) => {
+              const isActive = activeStoryId === story.id;
               return (
                 <li
                   key={story.id}
-                  onClick={() => onSelectStory(story)}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  className={\`names-list-item cursor-pointer px-4 w-full text-center flex items-center justify-center transition-colors \${
-                    isActive ? 'row-active' : 'hover:bg-neutral-100'
+                  onClick={() => {
+                    setActiveStoryId(story.id);
+                    onSelectStory(story);
+                  }}
+                  onMouseEnter={() => setActiveStoryId(story.id)}
+                  className={\`names-list-item cursor-pointer px-4 w-full text-center flex items-center justify-center \${
+                    isActive ? 'row-active' : ''
                   }\`}
                 >
-                  <span
-                    className={\`text-[13px] md:text-[14px] leading-none tracking-normal select-none truncate max-w-2xl \${
-                      isActive ? 'text-white font-medium' : 'text-black'
-                    }\`}
-                  >
+                  {/* Centered Name */}
+                  <span className="text-[13px] md:text-[14px] leading-none tracking-normal select-none truncate max-w-2xl text-black">
                     {story.name}
                   </span>
+
+                  {/* Profile Portrait only visible on the black bar with soft fade-in */}
+                  <div className="list-portrait-thumb absolute right-6 md:right-16 lg:right-28 top-1/2 z-30">
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-[#111111] border border-neutral-700 shadow-2xl overflow-hidden relative">
+                      <img
+                        src={story.image}
+                        alt={story.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-0 right-0 left-0 bg-black/85 px-1 py-0.5 text-[8px] text-white/90 text-center truncate tracking-widest font-mono">
+                        {story.shortName || story.name}
+                      </div>
+                    </div>
+                  </div>
                 </li>
               );
             })}
