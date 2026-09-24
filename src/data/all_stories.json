@@ -1,0 +1,1381 @@
+[
+  {
+    "id": 1,
+    "number": 1,
+    "name": "Manuel Liberoff Peisajovich",
+    "shortName": "Manuel Liberoff",
+    "image": "https://images.prismic.io/197historiasilustradas/aaB68sFoBIGEg35F_figure-193.jpg?auto=format%2Ccompress&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 2,
+    "number": 2,
+    "name": "Heber Eduardo O'Neil Velázquez",
+    "shortName": "Heber Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHAvMFoBIGEg7mZ_2-heber-eduardo.jpg?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 3,
+    "number": 3,
+    "name": "Miguel Ángel Lema",
+    "shortName": "Miguel Ángel",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4t88BOoF08xTa5_3.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 4,
+    "number": 4,
+    "name": "José Hugo Negro Méndez Donadio",
+    "shortName": "José Hugo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHA7sFoBIGEg7mp_4-jose-mendez.jpg?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 5,
+    "number": 5,
+    "name": "Adalberto Waldemar Plomito Soba Fernández",
+    "shortName": "Adalberto Waldemar",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCclMFoBIGEg4VK_184_AdalbertoSOBA_PinchesArtistas1.png?auto=format%2Ccompress&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 6,
+    "number": 6,
+    "name": "Luis Eduardo Chiqui González González",
+    "shortName": "Luis Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4uXcBOoF08xTbK_6.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 7,
+    "number": 7,
+    "name": "Elena Cándida la Negra Quinteros Almeida",
+    "shortName": "Elena Cándida",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCftcFoBIGEg4Vt_162_ElenaQUINTEROS_MaviAmigo1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 8,
+    "number": 8,
+    "name": "Urano Pitín Miranda Feleintor",
+    "shortName": "Urano Pitín",
+    "image": "https://images.prismic.io/197historiasilustradas/aaChyMFoBIGEg4Xa_139_UranoMIRANDA_AngelinaMontero_RGB__page-00011.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 9,
+    "number": 9,
+    "name": "Fernando Miranda Pérez",
+    "shortName": "Fernando Miranda",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCivMFoBIGEg4YZ_140_FernandoMIRANDA_FelipeEcheverria_publicacio%CC%81n1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 10,
+    "number": 10,
+    "name": "Modesto Coco Quiñones",
+    "shortName": "Modesto Coco",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCjnMFoBIGEg4ZW_163_Modesto_Quin%CC%83ones_PiaMartini1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 11,
+    "number": 11,
+    "name": "Alberto Cecilio Pocho Mechoso Méndez",
+    "shortName": "Alberto Cecilio",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCkh8FoBIGEg4am_134_AlbertoMECHOSO_HernanBarcelo_web2.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 12,
+    "number": 12,
+    "name": "Arazatí Ramón Paco López López",
+    "shortName": "Arazatí Ramón",
+    "image": "https://images.prismic.io/197historiasilustradas/aaClcMFoBIGEg4b4_124_Arazati%CC%81LO%CC%81PEZ_EduSganga_RGB_2400x30002.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 13,
+    "number": 13,
+    "name": "Luis Alberto Carvalho Scanavino",
+    "shortName": "Luis Alberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCm88FoBIGEg4e-_45_LuisCARVALHO_AnaDupont1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 14,
+    "number": 14,
+    "name": "Horacio Gelós Bonilla",
+    "shortName": "Horacio Gelós",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4urcBOoF08xTbL_14.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 15,
+    "number": 15,
+    "name": "Raúl Mongo Gámbaro Núñez",
+    "shortName": "Raúl Mongo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCpf8FoBIGEg4jL_84_Rau%CC%81lGA%CC%81MBARO_FabricioLombardo_cuadrado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 16,
+    "number": 16,
+    "name": "Gustavo Raúl Cabezón Arce Viera",
+    "shortName": "Gustavo Raúl",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCqe8FoBIGEg4km_6_GustavoARCE_FedericoTorres_1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 17,
+    "number": 17,
+    "name": "Alfredo Fernando Tito Bosco Muñoz",
+    "shortName": "Alfredo Fernando",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4vFcBOoF08xTbO_17.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 18,
+    "number": 18,
+    "name": "Washington Domingo Mingo Queiro Uzal",
+    "shortName": "Washington Domingo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCtUcFoBIGEg4of_161_WashingtonQUEIRO%CC%81_SantiagoHermida1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 19,
+    "number": 19,
+    "name": "Nebio Ariel el Petiso Melo Cuesta",
+    "shortName": "Nebio Ariel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCupsFoBIGEg4qx_135_NebioMELO_CatalinaOrtiz1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 20,
+    "number": 20,
+    "name": "Winston César El Pelado Mazzuchi Frantchez",
+    "shortName": "Winston César",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCvU8FoBIGEg4rw_133_WinstonMAZZUCHI_CatalinaOrtiz-2-1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 21,
+    "number": 21,
+    "name": "Carlos Federico Popeye Cabezudo Pérez",
+    "shortName": "Carlos Federico",
+    "image": "https://images.prismic.io/197historiasilustradas/aaCv5cFoBIGEg4sb_34_CarlosCABEZUDO_JuanPurtscher1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 22,
+    "number": 22,
+    "name": "Armando Bernardo Arnone Hernández",
+    "shortName": "Armando Bernardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaGwUcFoBIGEg7aJ_10_ArmandoARNONE_RocioSosa-1-2.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 23,
+    "number": 23,
+    "name": "Casimira María del Rosario Cacheta Carretero Cárdenas",
+    "shortName": "Casimira María",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXTMFxvIZEnjPt9_44_CasimiraCARRETERO_NatCardozo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 24,
+    "number": 24,
+    "name": "Juan Pablo Colorado Recagno Ibarburu",
+    "shortName": "Juan Pablo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXXM1xvIZEnjPvj_166_JuanPabloRECAGNO_NatCardozo_IG1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 25,
+    "number": 25,
+    "name": "Yolanda Iris Casco Ghelfi",
+    "shortName": "Yolanda Iris",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXbcFxvIZEnjPxR_46_YolandaCASCO_InesFerron1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 26,
+    "number": 26,
+    "name": "Julio César D’Elía Pallares",
+    "shortName": "Julio César",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXct1xvIZEnjPyN_62_JulioCesarDElia_InesFerron1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 27,
+    "number": 27,
+    "name": "Alberto Corchs Laviña",
+    "shortName": "Alberto Corchs",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXel1xvIZEnjPzF_57_AlbertoCorchs_14_AnnaRiguetti_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 28,
+    "number": 28,
+    "name": "Elena Paulina Lerena Costa",
+    "shortName": "Elena Paulina",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXhBlxvIZEnjP0Q_120_ElenaPaulinaLerena_14_AnnaRiguetti_1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 29,
+    "number": 29,
+    "name": "Alfredo Fredy Moyano Santander",
+    "shortName": "Alfredo Fredy",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXjaVxvIZEnjP1D_120_ElenaPaulinaLerena_14_AnnaRiguetti_2.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 30,
+    "number": 30,
+    "name": "María Asunción Mary Artigas Nilo",
+    "shortName": "María Asunción",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXleVxvIZEnjP10_IMG_81521.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 31,
+    "number": 31,
+    "name": "Félix Sebastián Ortiz Piasoli",
+    "shortName": "Félix Sebastián",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXnE1xvIZEnjP2N_148_Fe%CC%81lixORTIZ_LucianaDeCarlo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 32,
+    "number": 32,
+    "name": "Josefina Modesta Keim Lledó",
+    "shortName": "Josefina Modesta",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXoslxvIZEnjP2q_118_JosefinaKEIM_FlorenciaRodriguez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 33,
+    "number": 33,
+    "name": "Juan Miguel Morales von Pieverling",
+    "shortName": "Juan Miguel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXpyVxvIZEnjP2__143_JuanMORALES_FlorenciaRodriguez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 34,
+    "number": 34,
+    "name": "Jorge Hugo Martínez Horminoguez",
+    "shortName": "Jorge Hugo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXrSFxvIZEnjP3d_129_JorgeMARTI%CC%81NEZ_CarolinaDuarte1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 35,
+    "number": 35,
+    "name": "Marta Beatriz Severo Barreto",
+    "shortName": "Marta Beatriz",
+    "image": "https://images.prismic.io/197historiasilustradas/aaXtc1xvIZEnjP3__181_MartaSEVERO_CarolinaDuarte1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 36,
+    "number": 36,
+    "name": "Graciela Noemí Laura Basualdo Noguera",
+    "shortName": "Graciela Noemí",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqTT8BOoF08xQ1v_Frame2147243685.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 37,
+    "number": 37,
+    "name": "Gustavo Alejandro María Goycoechea Camacho",
+    "shortName": "Gustavo Alejandro",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqTgcBOoF08xQ1w_Frame2147243686.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 38,
+    "number": 38,
+    "name": "Jorge Roberto Charleta Zaffaroni Castilla",
+    "shortName": "Jorge Roberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aab6EVxvIZEnjR46_196_RobertoZAFFARONI_FranCunha_cuadrada1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 39,
+    "number": 39,
+    "name": "María Emilia Emi Islas Gatti",
+    "shortName": "María Emilia",
+    "image": "https://images.prismic.io/197historiasilustradas/aab9AVxvIZEnjR6__116_Mari%CC%81aEmiliaISLAS_FranCunha_cuadrada1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 40,
+    "number": 40,
+    "name": "Eduardo Cacho Gallo Castro",
+    "shortName": "Eduardo Cacho",
+    "image": "https://images.prismic.io/197historiasilustradas/aab_PFxvIZEnjR8z_83_EduardoGALLO_ElianStolarsky-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 41,
+    "number": 41,
+    "name": "Aída Celia Sanz Fernández",
+    "shortName": "Aída Celia",
+    "image": "https://images.prismic.io/197historiasilustradas/aacAH1xvIZEnjR9W_83_EduardoGALLO_ElianStolarsky-1-2.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 42,
+    "number": 42,
+    "name": "Adriana Gatti Casal",
+    "shortName": "Adriana Gatti",
+    "image": "https://images.prismic.io/197historiasilustradas/aacCbFxvIZEnjR_I_92_AdrianaGATTI_CathyBurghi1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 43,
+    "number": 43,
+    "name": "Gerardo Francisco Gatti Antuña",
+    "shortName": "Gerardo Francisco",
+    "image": "https://images.prismic.io/197historiasilustradas/aacER1xvIZEnjSAc_91_GerardoGATTI_CathyBurghi1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 44,
+    "number": 44,
+    "name": "León Gualberto Loco Duarte Luján",
+    "shortName": "León Gualberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aacGFFxvIZEnjSB2_72_Leo%CC%81nDUARTE_HernanBarcelo_web1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 45,
+    "number": 45,
+    "name": "Juan Carlos Insausti Tironi",
+    "shortName": "Juan Carlos",
+    "image": "https://images.prismic.io/197historiasilustradas/aacJMFxvIZEnjSEa_114_JuanCarlosINSAUSTI_VeronicaAlves_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 46,
+    "number": 46,
+    "name": "María Angélica Ibarbia Corassi",
+    "shortName": "María Angélica",
+    "image": "https://images.prismic.io/197historiasilustradas/aacKEVxvIZEnjSFG_113_Mari%CC%81aAnge%CC%81licaIBARBIA_VeronicaAlves1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 47,
+    "number": 47,
+    "name": "Esther Gersberg Dreifus",
+    "shortName": "Esther Gersberg",
+    "image": "https://images.prismic.io/197historiasilustradas/aacK51xvIZEnjSFe_95_EstherGersberg_CarlaEbert1.png?auto=format%2Ccompress&rect=0%2C0%2C2896%2C2896&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 48,
+    "number": 48,
+    "name": "María Claudia García Iruretagoyena",
+    "shortName": "María Claudia",
+    "image": "https://images.prismic.io/197historiasilustradas/aacK6VxvIZEnjSFf_87_MariaClaudiaGarcia_LorennaEsposito1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 49,
+    "number": 49,
+    "name": "Luis Eduardo Arigón Castel",
+    "shortName": "Luis Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaGzIMFoBIGEg7cj_9_LuisEduardoARIGON_LeandroMangado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 50,
+    "number": 50,
+    "name": "Raúl Barreto Capelli",
+    "shortName": "Raúl Barreto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG0vcFoBIGEg7do_9_LuisEduardoARIGON_LeandroMangado2.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 51,
+    "number": 51,
+    "name": "Washington Javier Barrios Fernández",
+    "shortName": "Washington Javier",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG3M8FoBIGEg7fe_9_LuisEduardoARIGON_LeandroMangado3.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 52,
+    "number": 52,
+    "name": "Mario Roger Julien Cáceres",
+    "shortName": "Mario Roger",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqNO8BOoF08xQ0q_Frame2147243674.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 53,
+    "number": 53,
+    "name": "Victoria Lucía Grisonas Andrijauskaite",
+    "shortName": "Victoria Lucía",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqOQsBOoF08xQ04_Frame2147243675.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 54,
+    "number": 54,
+    "name": "Claudio Ernesto Logares Manfrini",
+    "shortName": "Claudio Ernesto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG4oMFoBIGEg7g7_123_ClaudioLOGARES_LetiMato1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 55,
+    "number": 55,
+    "name": "Mónica Sofía Grinspón Pavón",
+    "shortName": "Mónica Sofía",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG5D8FoBIGEg7hM_106_Mo%CC%81nicaGRINSPON_LetiMato1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 56,
+    "number": 56,
+    "name": "Enrique Joaquín Lucas López",
+    "shortName": "Enrique Joaquín",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG5dsFoBIGEg7he_125_EnriqueJoaquin_LucasLopez_IngridPeirano1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 57,
+    "number": 57,
+    "name": "Ileana Sara María García Ramos",
+    "shortName": "Ileana Sara",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG51sFoBIGEg7ht_89.IleanaGARCIA_JuTiscornia1.png?auto=format%2Ccompress&rect=0%2C0%2C3277%2C3277&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 58,
+    "number": 58,
+    "name": "Edmundo Sabino Flaco José Dossetti Techeira",
+    "shortName": "Edmundo Sabino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG-vsFoBIGEg7lg_71.EdmundoDOSSETTI_JuTiscornia1.png?auto=format%2Ccompress&rect=0%2C0%2C3277%2C3277&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 59,
+    "number": 59,
+    "name": "Jorge Felisberto Gonçalves Busconi",
+    "shortName": "Jorge Felisberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG_CcFoBIGEg7lp_100_JorgeGONCALVEZ_RominaSantana_RGB-cuadrado-instagram1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 60,
+    "number": 60,
+    "name": "Cecilia Susana Piti Trías Hernández",
+    "shortName": "Cecilia Susana",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG_XsFoBIGEg7ly_191_CeciliaTRI%CC%81AS_StefiDeMello1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 61,
+    "number": 61,
+    "name": "Washington el Negro Cram González",
+    "shortName": "Washington el",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG_pMFoBIGEg7l7_59_WashingtonCRAM_StefiDeMello1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 62,
+    "number": 62,
+    "name": "Miguel Ángel Cholo Río Casas",
+    "shortName": "Miguel Ángel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaG_9MFoBIGEg7mC_167_MiguelRI%CC%81O_LuciaFidalgo_cuadrado_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 63,
+    "number": 63,
+    "name": "Guillermo Manuel Willy Sobrino Berardi",
+    "shortName": "Guillermo Manuel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHAMsFoBIGEg7mH_185_GuillermoSOBRINO_LuciaFidalgo_Cuadrada_RGB1.png?auto=format%2Ccompress&rect=0%2C4%2C2393%2C2393&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 64,
+    "number": 64,
+    "name": "Ubagesner Cháves Sosa",
+    "shortName": "Ubagesner Cháves",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHAicFoBIGEg7mQ_54_UbagesnerCHA%CC%81VESSOSA_JulietaChiesa1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 65,
+    "number": 65,
+    "name": "Ary el Brasilero Cabrera Prates",
+    "shortName": "Ary el",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHAvMFoBIGEg7mY_35_AryCabrera_8_Palarino_rgb1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 66,
+    "number": 66,
+    "name": "Raimunado Aníbal Villaflor Gómez",
+    "shortName": "Raimunado Aníbal",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHBHMFoBIGEg7mu_194_RaymundoVILLAFLOR_TaniaMalzoni1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 67,
+    "number": 67,
+    "name": "María Elsa Gallega Garreiro Martínez",
+    "shortName": "María Elsa",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHBYsFoBIGEg7nA_90_Mari%CC%81aElsaGARREIRO_ArenaHerna%CC%81ndez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 68,
+    "number": 68,
+    "name": "Elba Lucía Gándara Castromán",
+    "shortName": "Elba Lucía",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHBw8FoBIGEg7nP_85_ElbaGANDARA_LuciaPinto_RGB-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 69,
+    "number": 69,
+    "name": "Héctor Orlando el Portlan Giordano Cortazzo",
+    "shortName": "Héctor Orlando",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHCGcFoBIGEg7n3_96_He%CC%81ctorGIORDANO_Soph1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 70,
+    "number": 70,
+    "name": "Julio Gerardo Correa Rodríguez",
+    "shortName": "Julio Gerardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHCXMFoBIGEg7oJ_58_JulioCORREA_LauraVillar1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 71,
+    "number": 71,
+    "name": "Juan Américo Soca",
+    "shortName": "Juan Américo",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqVMcBOoF08xQ2g_Frame2147243689.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 72,
+    "number": 72,
+    "name": "Óscar Ruben De Gregorio Marconi",
+    "shortName": "Óscar Ruben",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqUMMBOoF08xQ17_O%CC%81scarRubenDeGregorioMarconi.jpg?auto=format%2Ccompress&rect=0%2C0%2C512%2C512&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 73,
+    "number": 73,
+    "name": "Óscar Tassino Asteazu",
+    "shortName": "Óscar Tassino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHDfMFoBIGEg7o7_189_OscarTASSINO_CeciliaBran%CC%83a1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 74,
+    "number": 74,
+    "name": "Francisco Edgardo Candia Correa",
+    "shortName": "Francisco Edgardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHN_cFoBIGEg72B_41_Francisco_CandiaCorrea_AnaCeciliaCardozo1.png?auto=format%2Ccompress&rect=0%2C0%2C2865%2C2865&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 75,
+    "number": 75,
+    "name": "Graciela Susana De Gouveia Gallo",
+    "shortName": "Graciela Susana",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHOT8FoBIGEg72V_64_GracielaDeGOUVEIA_DanielaBeracochea_RGB-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 76,
+    "number": 76,
+    "name": "José Enrique Mudo Michelena Bastarrica",
+    "shortName": "José Enrique",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHOfMFoBIGEg72d_138_Jose%CC%81EnriqueMICHELENA_DanielaBeracochea_RGB-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 77,
+    "number": 77,
+    "name": "Raúl Edgardo el Petiso Borelli Cattáneo",
+    "shortName": "Raúl Edgardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHOu8FoBIGEg72j_30_RaulBORELLI_JoaquinGodoy1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 78,
+    "number": 78,
+    "name": "Luis Fernando Upa Martínez Santoro",
+    "shortName": "Luis Fernando",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHPCMFoBIGEg728_130_LuisFernandoMARTI%CC%81NEZ_JulietaMacchi1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 79,
+    "number": 79,
+    "name": "Daniel Pedro Alfaro Vázquez",
+    "shortName": "Daniel Pedro",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHPUsFoBIGEg73-_2_DanielALFARO_AmaliaRodriguez1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 80,
+    "number": 80,
+    "name": "Ricardo Alfonso Blanco Valiente",
+    "shortName": "Ricardo Alfonso",
+    "image": "https://images.prismic.io/197historiasilustradas/abTOVVxvIZEnjrCs_27_RicardoBLANCO_NicolasPeruzzoGrande.jpeg?auto=format%2Ccompress&rect=0%2C128%2C1024%2C1024&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 81,
+    "number": 81,
+    "name": "Eduardo Efraín Chizzola Cano",
+    "shortName": "Eduardo Efraín",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHP2sFoBIGEg75W_56_EduardoCHIZZOLA_CuteZuki_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 82,
+    "number": 82,
+    "name": "Otermín Laureano Montes De Oca Domeneche",
+    "shortName": "Otermín Laureano",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqOpsBOoF08xQ1C_Frame2147243676.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 83,
+    "number": 83,
+    "name": "Elsa Haydée Fernández Lanzani",
+    "shortName": "Elsa Haydée",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHQZcFoBIGEg76X_79_ElsaFERNA%CC%81NDEZ_ElisaRios1.png?auto=format%2Ccompress&rect=0%2C0%2C2205%2C2205&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 84,
+    "number": 84,
+    "name": "Wilhelm Wurm Mallines",
+    "shortName": "Wilhelm Wurm",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqU3MBOoF08xQ2a_Frame2147243688.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 85,
+    "number": 85,
+    "name": "Juan Manuel Brieba",
+    "shortName": "Juan Manuel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHQ7MFoBIGEg77z_32_JuanBRIEBA_VirginiaRiviezzo_11.png?auto=format%2Ccompress&rect=0%2C0%2C2300%2C2300&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 86,
+    "number": 86,
+    "name": "Carlos Pablo Arévalo Arispe",
+    "shortName": "Carlos Pablo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHRLMFoBIGEg78Z_8_CarlosArevalo_PaulaMartinez_Cuadrado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 87,
+    "number": 87,
+    "name": "Óscar José Baliñas Arias",
+    "shortName": "Óscar José",
+    "image": "https://images.prismic.io/197historiasilustradas/abTNs1xvIZEnjrCr_16_OscarBALIN%CC%83AS_AlejandraGuillen.jpg?auto=format%2Ccompress&rect=0%2C300%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 88,
+    "number": 88,
+    "name": "Omar Nelson Cubas Simones",
+    "shortName": "Omar Nelson",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHR58FoBIGEg78z_61_OmarCUBAS_AiaraCamacho1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 89,
+    "number": 89,
+    "name": "Hugo Ernesto Gomensoro Josman",
+    "shortName": "Hugo Ernesto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHSIsFoBIGEg785_97_HugoGomensoro_NataliaVera1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 90,
+    "number": 90,
+    "name": "Roberto Julio Tito Gomensoro Josman",
+    "shortName": "Roberto Julio",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHSX8FoBIGEg79a_98_TitoGomensoro_NataliaVera1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 91,
+    "number": 91,
+    "name": "Carlos Julián Petiso Heber Hernández Machado",
+    "shortName": "Carlos Julián",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHSm8FoBIGEg79x_110_CarlosPetisoHERNANDEZ_AnaDupont1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 92,
+    "number": 92,
+    "name": "Jorge Hernández Rodríguez",
+    "shortName": "Jorge Hernández",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHS3MFoBIGEg794_111_JorgeHERNA%CC%81NDEZ_ZafiroCarbonell_rgb1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 93,
+    "number": 93,
+    "name": "Juan Micho Micheff Jara",
+    "shortName": "Juan Micho",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHTLcFoBIGEg7-E_137_Juan_Micheff_GastonReal1.png?auto=format%2Ccompress&rect=0%2C0%2C2500%2C2500&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 94,
+    "number": 94,
+    "name": "Edison Óscar Melena Cantero Freire",
+    "shortName": "Edison Óscar",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHTcMFoBIGEg7-O_42_EdisonCANTERO_AlvaroDiaz_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 95,
+    "number": 95,
+    "name": "Carlos Alberto Modernell",
+    "shortName": "Carlos Alberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHTq8FoBIGEg7-X_141_CarlosMODERNELL_KaoValer1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 96,
+    "number": 96,
+    "name": "Miguel Ángel Moreno Malugani",
+    "shortName": "Miguel Ángel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHUDMFoBIGEg7-s_144_MiguelAngel_Moreno_PiaMartini1.png?auto=format%2Ccompress&rect=0%2C0%2C2787%2C2787&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 97,
+    "number": 97,
+    "name": "Julio César Fernández Fernández",
+    "shortName": "Julio César",
+    "image": "https://images.prismic.io/197historiasilustradas/abTMIlxvIZEnjrCf_78_JulioFERNA%CC%81NDEZ_AntonellaSiragusa_RGB.png?auto=format%2Ccompress&rect=0%2C178%2C2944%2C2944&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 98,
+    "number": 98,
+    "name": "Ignacio Arocena Linn",
+    "shortName": "Ignacio Arocena",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHUo8FoBIGEg7-1_12_IgnacioAROCENA_GonzaloFirpo_2400x3000_300dpi1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 99,
+    "number": 99,
+    "name": "José Arpino Vega",
+    "shortName": "José Arpino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHU7MFoBIGEg7-4_13_JoseARPINO__Arena_rgb1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 100,
+    "number": 100,
+    "name": "María Antonia Castro Huerga",
+    "shortName": "María Antonia",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHViMFoBIGEg7_G_50_Mari%CC%81aAntoniaCASTRO_RominaVigo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 101,
+    "number": 101,
+    "name": "José Mario Martínez Suárez",
+    "shortName": "José Mario",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHVysFoBIGEg7_R_131_Jose%CC%81MarioMARTI%CC%81NEZ_RominaVigo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 102,
+    "number": 102,
+    "name": "Abel Adán Ayala Álvez",
+    "shortName": "Abel Adán",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHWGcFoBIGEg7_U_15_AbelAYALA_RominaGarcia-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 103,
+    "number": 103,
+    "name": "Olivar Lauro Sarco Sena Rodríguez",
+    "shortName": "Olivar Lauro",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHWacFoBIGEg7_f_177_OlivarSENA_LuisRamirez_rgb1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 104,
+    "number": 104,
+    "name": "Asdrúbal Eduardo Paciello Martínez",
+    "shortName": "Asdrúbal Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHWqsFoBIGEg7_q_150_Asdru%CC%81balPACIELLO_CamiCoutinho1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 105,
+    "number": 105,
+    "name": "Enrique Julio el Negro Pagardoy Saquieres",
+    "shortName": "Enrique Julio",
+    "image": "https://images.prismic.io/197historiasilustradas/ae_JWsBOoF08xWB8_23_Mo%CC%81nicaBENARROYO_GenovevaPerez1-1-.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 106,
+    "number": 106,
+    "name": "José Luis Pelúa Pereira",
+    "shortName": "José Luis",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHXUsFoBIGEg8AA_154_Jose%CC%81PELU%CC%81A_CeciliaBran%CC%83a_RGB_Libro1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 107,
+    "number": 107,
+    "name": "Renée Pereira Gasagoite",
+    "shortName": "Renée Pereira",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHXgsFoBIGEg8AI_156_Rene%CC%81ePEREIRA_CamilaVaz1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 108,
+    "number": 108,
+    "name": "Martín Isabelino Pelúa Pereira",
+    "shortName": "Martín Isabelino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHXz8FoBIGEg8AV_155_Marti%CC%81nPELU%CC%81A_CamilaVaz1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 109,
+    "number": 109,
+    "name": "Fernando Rafael Santiago el Pata Díaz De Cárdenas",
+    "shortName": "Fernando Rafael",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHYCsFoBIGEg8Az_70_FernandoDIAZ_KarinaElmallian1.png?auto=format%2Ccompress&rect=0%2C0%2C2100%2C2100&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 110,
+    "number": 110,
+    "name": "José Enrique Caitano Malgor",
+    "shortName": "José Enrique",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHYXsFoBIGEg8Bz_37_Jose%CC%81EnriqueCAITANO_KaoValer1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 111,
+    "number": 111,
+    "name": "Atalivas Castillo Lima",
+    "shortName": "Atalivas Castillo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHYtMFoBIGEg8Cq_49_AtalivasCastillo_DiegoMundarain_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 112,
+    "number": 112,
+    "name": "Félix Juancito Maidana Bentín",
+    "shortName": "Félix Juancito",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHY9cFoBIGEg8DU_128_Fe%CC%81lixMAIDANA_MartinaGarcia_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 113,
+    "number": 113,
+    "name": "Julio Gerardo Castro Pérez",
+    "shortName": "Julio Gerardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHZTcFoBIGEg8ER_51_JulioCASTRO_LuciaRuggiano_rgb-1-1.png?auto=format%2Ccompress&rect=0%2C7%2C3508%2C3508&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 114,
+    "number": 114,
+    "name": "Roberto Waldemar Castro Pintos",
+    "shortName": "Roberto Waldemar",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqPb8BOoF08xQ1G_Frame2147243677.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 115,
+    "number": 115,
+    "name": "Juan Alberto De León Scanziani",
+    "shortName": "Juan Alberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHZ0sFoBIGEg8Ef_66_JuanDELEON_FedericoTorres_Cuadrado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 116,
+    "number": 116,
+    "name": "Júpiter Neo Delpino Baubeta",
+    "shortName": "Júpiter Neo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHaGcFoBIGEg8Ej_68_JupiterDELPINO_HernanAlfaro-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 117,
+    "number": 117,
+    "name": "Leonardo Germán Gordo Lucas Gelpi Cáceres",
+    "shortName": "Leonardo Germán",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHabsFoBIGEg8E4_94_GordoLucasGELPI_AgustinaMandacen1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 118,
+    "number": 118,
+    "name": "Natalio Abdala Dergan Jorge",
+    "shortName": "Natalio Abdala",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHan8FoBIGEg8FB_69_NatalioAbdalaDERGAN_FabioRodriguez1.png?auto=format%2Ccompress&rect=0%2C0%2C1452%2C1452&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 119,
+    "number": 119,
+    "name": "Carlos Baldomiro Severo Barreto",
+    "shortName": "Carlos Baldomiro",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHbBsFoBIGEg8FU_180_CarlosSEVEROBARRETO_MagdalenaGutierrez1.png?auto=format%2Ccompress&rect=0%2C0%2C4096%2C4096&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 120,
+    "number": 120,
+    "name": "Blanca Margarita Rodríguez",
+    "shortName": "Blanca Margarita",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHbT8FoBIGEg8Fb_168_BlancaMargaritaRODRI%CC%81GUEZ_FlorenciaPertusatti1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 121,
+    "number": 121,
+    "name": "María Rosa Aguirre",
+    "shortName": "María Rosa",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHqLsFoBIGEg8Lt_1_MariaRosaAguirre_11_ClauPre_IG1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 122,
+    "number": 122,
+    "name": "Mónica Cristina Benaroyo Pencu",
+    "shortName": "Mónica Cristina",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqQDcBOoF08xQ1K_Mo%CC%81nicaCristinaBenaroyoPencu.jpg?auto=format%2Ccompress&rect=0%2C0%2C512%2C512&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 123,
+    "number": 123,
+    "name": "Manuel Eduardo Bicho García Kieffer",
+    "shortName": "Manuel Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqRhsBOoF08xQ1c_Frame2147243682.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 124,
+    "number": 124,
+    "name": "María Catalina Benassi García",
+    "shortName": "María Catalina",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHq6cFoBIGEg8ME_24_Mari%CC%81aCatalinaBENASSI_LeticiaSotura1.png?auto=format%2Ccompress&rect=0%2C0%2C2048%2C2048&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 125,
+    "number": 125,
+    "name": "Ricardo Altamirano Alza",
+    "shortName": "Ricardo Altamirano",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHrHcFoBIGEg8MJ_3_RicardoALTAMIRANO_AmaliaRodriguez1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 126,
+    "number": 126,
+    "name": "María Nieves Zuazu Maio",
+    "shortName": "María Nieves",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHrW8FoBIGEg8Ml_197_MariaNievesZUAZU_Lumaral1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 127,
+    "number": 127,
+    "name": "Aníbal Ramón Castagno Luzardo",
+    "shortName": "Aníbal Ramón",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHrn8FoBIGEg8Mo_48_Ani%CC%81balCASTAGNO_IselenValido1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 128,
+    "number": 128,
+    "name": "José Luis Barboza Irrazabal",
+    "shortName": "José Luis",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHrzsFoBIGEg8Mr_17_Jose%CC%81LuisBARBOZA_NicolasPeruzzo1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 129,
+    "number": 129,
+    "name": "Mario Jorge Cruz Bonfiglio",
+    "shortName": "Mario Jorge",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHsHsFoBIGEg8M1_60_MarioJorgeCRUZ_CarlaEbert1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 130,
+    "number": 130,
+    "name": "Carlos Gabriel Guaz Porley",
+    "shortName": "Carlos Gabriel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHsecFoBIGEg8M9_107_CarlosGUAZ_LucianaDeCarlo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 131,
+    "number": 131,
+    "name": "Eduardo José María Del Fabro De Bernardi",
+    "shortName": "Eduardo José",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHsw8FoBIGEg8Nn_67_EduardoDelFABRO_RominaPontes1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 132,
+    "number": 132,
+    "name": "Juan Guillermo Fernández Amarillo",
+    "shortName": "Juan Guillermo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHtFcFoBIGEg8Nu_JuanGuillermoFernandezAmarillo_2400x3000_300dpi_CMYK-v21-1-.png?auto=format%2Ccompress&rect=0%2C0%2C2406%2C2406&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 133,
+    "number": 133,
+    "name": "Darío Gilberto Goñi Martínez",
+    "shortName": "Darío Gilberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHudMFoBIGEg8Oy_103_Dari%CC%81oGON%CC%83I_JoseDelValle1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 134,
+    "number": 134,
+    "name": "Beatriz Lourdes Hernández Hobbas",
+    "shortName": "Beatriz Lourdes",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHvVcFoBIGEg8Pd_108_BeatrizHERNA%CC%81NDEZ_ManuelMaldonado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 135,
+    "number": 135,
+    "name": "Washington Fernando Hernández Hobbas",
+    "shortName": "Washington Fernando",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHwXMFoBIGEg8P__109_WashingtonHERNA%CC%81NDEZ_ManuelMaldonado1-1-.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 136,
+    "number": 136,
+    "name": "Lourdes Hobbas Bellusci",
+    "shortName": "Lourdes Hobbas",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHwrMFoBIGEg8QD_112.LourdesHobbas-KiaraLucas1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 137,
+    "number": 137,
+    "name": "Humberto Modesto Machado",
+    "shortName": "Humberto Modesto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHw-sFoBIGEg8QG_127_HumbertoMACHADO_Ninna_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 138,
+    "number": 138,
+    "name": "Adolfo Isabelino Stroman Curbelo",
+    "shortName": "Adolfo Isabelino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHxg8FoBIGEg8QS_188_Adolfo_Sorman_GastonReal1.png?auto=format%2Ccompress&rect=0%2C0%2C2555%2C2555&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 139,
+    "number": 139,
+    "name": "Pablo Horacio Osorio Yamuni",
+    "shortName": "Pablo Horacio",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqTBMBOoF08xQ1l_Frame2147243684.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 140,
+    "number": 140,
+    "name": "Carlos Alberto Raina González",
+    "shortName": "Carlos Alberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHyFcFoBIGEg8Qh_164_CarlosRAINA_CarlosLemos1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 141,
+    "number": 141,
+    "name": "Kleber Hermano Mauricio Silva Iribarnegaray",
+    "shortName": "Kleber Hermano",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHya8FoBIGEg8Qj_182_KleberIRIBARNEGARAY_MattJelen1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 142,
+    "number": 142,
+    "name": "Líver Eduardo Cacho Trinidad Espinosa",
+    "shortName": "Líver Eduardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHyrcFoBIGEg8Q5_192_LiverTRINIDAD_JosefinaAbramczyk_IG_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 143,
+    "number": 143,
+    "name": "Ary Héctor Tatú Severo Barreto",
+    "shortName": "Ary Héctor",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHy8MFoBIGEg8RA_179_Ary_SeveroBarreto_LeonardoRodriguez1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 144,
+    "number": 144,
+    "name": "Célica Élida Gómez Rosano",
+    "shortName": "Célica Élida",
+    "image": "https://images.prismic.io/197historiasilustradas/aaHzMsFoBIGEg8RL_99_Ce%CC%81licaGO%CC%81MEZ_RocioSosa1-1-.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 145,
+    "number": 145,
+    "name": "Luis Alberto Camacho Osoria",
+    "shortName": "Luis Alberto",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqT38BOoF08xQ13_LuisAlbertoCamachoOsoria.jpg?auto=format%2Ccompress&rect=0%2C0%2C512%2C512&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 146,
+    "number": 146,
+    "name": "Juan Pablo el Monito Errandonea Salvia",
+    "shortName": "Juan Pablo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH2bMFoBIGEg8Sm_Juan_Pablo_Errandonea_Matias_Reyes-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 147,
+    "number": 147,
+    "name": "Rafael Laudelino Lezama González",
+    "shortName": "Rafael Laudelino",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH2vMFoBIGEg8Sy_121.Rafael_Lezama_IngridPeirano1.png?auto=format%2Ccompress&rect=0%2C0%2C2351%2C2351&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 148,
+    "number": 148,
+    "name": "José Pedro Callaba Píriz",
+    "shortName": "José Pedro",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqSi8BOoF08xQ1j_Frame2147243683.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 149,
+    "number": 149,
+    "name": "Norma Mary Scópice Rijo",
+    "shortName": "Norma Mary",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH3UsFoBIGEg8Ta_176_NormaSCO%CC%81PICE_AnaBidault1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 150,
+    "number": 150,
+    "name": "Eduardo Bleier Horovitz",
+    "shortName": "Eduardo Bleier",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqRPcBOoF08xQ1X_Frame2147243681.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 151,
+    "number": 151,
+    "name": "Ada Margaret Burgueño Pereira",
+    "shortName": "Ada Margaret",
+    "image": "https://images.prismic.io/197historiasilustradas/ae_J4sBOoF08xWCe_151.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 152,
+    "number": 152,
+    "name": "Helios Hermógenes Rolo Serra Silvera",
+    "shortName": "Helios Hermógenes",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH4E8FoBIGEg8Tg_178_HeliosSERRA_LuciaMostarda1.png?auto=format%2Ccompress&rect=0%2C0%2C1785%2C1785&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 153,
+    "number": 153,
+    "name": "José Agustín Potenza Ferreyra",
+    "shortName": "José Agustín",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH4ZMFoBIGEg8Th_158_Agusti%CC%81nPOTENZA_KatiaFernandez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 154,
+    "number": 154,
+    "name": "Rafaela Giuliana Filipazzi Rossini",
+    "shortName": "Rafaela Giuliana",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH4j8FoBIGEg8Tk_80_RafaelaFILIPAZZI_KatiaFernandez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 155,
+    "number": 155,
+    "name": "Hugo Enrique Cacciavillani Caligari",
+    "shortName": "Hugo Enrique",
+    "image": "https://images.prismic.io/197historiasilustradas/ae_KG8BOoF08xWCi_155.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 156,
+    "number": 156,
+    "name": "Miguel Ángel Gordo Tito Mato Fagián",
+    "shortName": "Miguel Ángel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH5u8FoBIGEg8T0_132_MiguelMATO_LuciaPicerno1.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 157,
+    "number": 157,
+    "name": "Jorge Pedreira Brum",
+    "shortName": "Jorge Pedreira",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH6DsFoBIGEg8UI_153_JorgePedreiraBrum_LorenaCanelas_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 158,
+    "number": 158,
+    "name": "Walner Ademir Bentancour Garín",
+    "shortName": "Walner Ademir",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH6UsFoBIGEg8UQ_25_WalnerBentancour_MartinaGarcia_RGB-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 159,
+    "number": 159,
+    "name": "Nelson Wilfredo González Fernández",
+    "shortName": "Nelson Wilfredo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH7BMFoBIGEg8Ue_101_WilfredoGonzalez_FabricioCeppi1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 160,
+    "number": 160,
+    "name": "Claudio Epelbaum Slotopolsky",
+    "shortName": "Claudio Epelbaum",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH7XMFoBIGEg8Uv_73_ClaudioEPELBAUM_EugeniaCurbelo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 161,
+    "number": 161,
+    "name": "Lila Epelbaum Slotopolsky",
+    "shortName": "Lila Epelbaum",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH7nsFoBIGEg8Uz_74_LilaEPELBAUM_EugeniaCurbelo1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 162,
+    "number": 162,
+    "name": "Héctor Castagnetto Da Rosa",
+    "shortName": "Héctor Castagnetto",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH8MMFoBIGEg8VB_47_HectorCASTAGNETTO_IgnacioLopez1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 163,
+    "number": 163,
+    "name": "Raúl Pedro Anteojito Olivera Cancela",
+    "shortName": "Raúl Pedro",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqQXMBOoF08xQ1P_Frame2147243679.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 164,
+    "number": 164,
+    "name": "Gustavo Edison Inzaurralde Melgar",
+    "shortName": "Gustavo Edison",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH9BMFoBIGEg8VN_115_GustavoINZAURRALDE_ValentinaSkorupsky_11.png?auto=format%2Ccompress&rect=0%2C0%2C2399%2C2399&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 165,
+    "number": 165,
+    "name": "Nelson Rodolfo Santana Escotto",
+    "shortName": "Nelson Rodolfo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH9OsFoBIGEg8VR_174_NelsonSANTANA_ValentinaSkorupsky_21.png?auto=format%2Ccompress&rect=0%2C0%2C2399%2C2399&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 166,
+    "number": 166,
+    "name": "Antonio Omar Paitta Cardozo",
+    "shortName": "Antonio Omar",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH9ccFoBIGEg8VV_152_OmarPAITTA_FlorenciaSequeira_RGB.png1.png?auto=format%2Ccompress&rect=0%2C0%2C2296%2C2296&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 167,
+    "number": 167,
+    "name": "Juan Ángel Cendán Almada",
+    "shortName": "Juan Ángel",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH9vcFoBIGEg8Va_53.JuanAngelCENDAN_Mati%CC%81asPregliasco_PNG1-1-.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 168,
+    "number": 168,
+    "name": "Ariel Arcos Latorre",
+    "shortName": "Ariel Arcos",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH-EMFoBIGEg8Vd_7.ArielARCOSLATORRE-JustLuri1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 169,
+    "number": 169,
+    "name": "Francisco Rando Ferreira",
+    "shortName": "Francisco Rando",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqUbcBOoF08xQ2B_Frame2147243687-1-.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 170,
+    "number": 170,
+    "name": "Luján Alcides Sosa Valdez",
+    "shortName": "Luján Alcides",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH-rcFoBIGEg8Vj_187_Luja%CC%81nSOSA_NoeliaPrat1.png?auto=format%2Ccompress&rect=0%2C0%2C3024%2C3024&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 171,
+    "number": 171,
+    "name": "Marcos Basilio Arocena Da Silva Guimaraes",
+    "shortName": "Marcos Basilio",
+    "image": "https://images.prismic.io/197historiasilustradas/aaH_i8FoBIGEg8Vu_11_MarcosAROCENA_EricSilva1.png?auto=format%2Ccompress&rect=0%2C0%2C1920%2C1920&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 172,
+    "number": 172,
+    "name": "Andrés Humberto Domingo Bellizzi Bellizzi",
+    "shortName": "Andrés Humberto",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4xb8BOoF08xTbo_172.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 173,
+    "number": 173,
+    "name": "Rutilo Dardo Bentancour Roth",
+    "shortName": "Rutilo Dardo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIAIMFoBIGEg8V4_26_RutiloBENTANCOUR_VeronicaAlvarado-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 174,
+    "number": 174,
+    "name": "José Luis el Flaco Urtasun Terra",
+    "shortName": "José Luis",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIAaMFoBIGEg8V7_193_Jose%CC%81URTASUN_MatiasBergara__rgb1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 175,
+    "number": 175,
+    "name": "María Rosa Silveira Gramont",
+    "shortName": "María Rosa",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4xB8BOoF08xTbj_175.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 176,
+    "number": 176,
+    "name": "Ruben Cachito Prieto González",
+    "shortName": "Ruben Cachito",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIBMMFoBIGEg8WL_160_RubenPRIETO_MariaJosePita1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 177,
+    "number": 177,
+    "name": "Graciela Teresa Da Silveira Chiappino",
+    "shortName": "Graciela Teresa",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIBfMFoBIGEg8WM_63.GracielaTeresaDASILVEIRACHIAPPINOdeCHEGENIAN-17.Sofi%CC%81aTeperino1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 178,
+    "number": 178,
+    "name": "Segundo Chegenián Rodríguez",
+    "shortName": "Segundo Chegenián",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIBp8FoBIGEg8WQ_55.SegundoCHEGENIANRODRI%CC%81GUEZ-17.Sofi%CC%81aTeperino1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 179,
+    "number": 179,
+    "name": "Beatriz Alicia Anglet De León",
+    "shortName": "Beatriz Alicia",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIB-cFoBIGEg8WV_5_BeatrizANGLET_LucilaGonzalez1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 180,
+    "number": 180,
+    "name": "Germán Nelson García Calcagno",
+    "shortName": "Germán Nelson",
+    "image": "https://images.prismic.io/197historiasilustradas/aaICSMFoBIGEg8Wb_86_GermanGarcia_TatiMesa1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 181,
+    "number": 181,
+    "name": "Eduardo Gordo Marcos Pérez Silveira",
+    "shortName": "Eduardo Gordo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaICjcFoBIGEg8We_157_EduardoPE%CC%81REZ_AntonellaSiragusa_RGB1.png?auto=format%2Ccompress&rect=0%2C64%2C2568%2C2568&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 182,
+    "number": 182,
+    "name": "Julio Lorenzo Escudero Mattos",
+    "shortName": "Julio Lorenzo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaICxcFoBIGEg8Wh_76_JulioESCUDERO_RominaGarcia1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 183,
+    "number": 183,
+    "name": "Alberto Mariano Fontela Alonso",
+    "shortName": "Alberto Mariano",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4wlcBOoF08xTbh_183.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 184,
+    "number": 184,
+    "name": "Mary Norma Luppi Mazzone",
+    "shortName": "Mary Norma",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIDdcFoBIGEg8W2_126_MaryLUPPI_BelenValverde1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 185,
+    "number": 185,
+    "name": "Juan Antonio Povaschuck Galeazzo",
+    "shortName": "Juan Antonio",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4wPMBOoF08xTbc_185.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 186,
+    "number": 186,
+    "name": "Carlos Alfredo Rodríguez Mercader",
+    "shortName": "Carlos Alfredo",
+    "image": "https://images.prismic.io/197historiasilustradas/aaIEGMFoBIGEg8XF_170_CarlosRODRI%CC%81GUEZ_NinoFernandez_RGB1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 187,
+    "number": 187,
+    "name": "Ever Rodríguez Sanabria",
+    "shortName": "Ever Rodríguez",
+    "image": "https://images.prismic.io/197historiasilustradas/ae4vyMBOoF08xTbW_172_Ever_Rodriguez_KarinaEillman1-1-.png?auto=format%2Ccompress&rect=0%2C0%2C173%2C173&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 188,
+    "number": 188,
+    "name": "Blanca Haydée Altman Levy",
+    "shortName": "Blanca Haydée",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWQ2sFoBIGEg-3c_4_BlancaALTMAN_BravaCaballero1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 189,
+    "number": 189,
+    "name": "Amelia Pocha Sanjurjo Casal",
+    "shortName": "Amelia Pocha",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWRMMFoBIGEg-4V_173_AmeliaSanjurjo_LorennaEsposito_CMYK1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 190,
+    "number": 190,
+    "name": "Raúl Néstor Tejera Llovet",
+    "shortName": "Raúl Néstor",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWRYsFoBIGEg-4p_190_Rau%CC%81lTEJERA_Soph-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 191,
+    "number": 191,
+    "name": "María Mercedes Camiou Minoli",
+    "shortName": "María Mercedes",
+    "image": "https://images.prismic.io/197historiasilustradas/aeqQt8BOoF08xQ1S_Frame2147243680.png?auto=format%2Ccompress&rect=0%2C0%2C174%2C174&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 192,
+    "number": 192,
+    "name": "Juvelino Andrés Cholo Carneiro Da Fontoura",
+    "shortName": "Juvelino Andrés",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWSJcFoBIGEg-6Z_43_JuveliniAndres_Carneiro_MaAgustinaFernandez-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2513%2C2513&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 193,
+    "number": 193,
+    "name": "Carolina Barrientos Sagastibelza",
+    "shortName": "Carolina Barrientos",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWSWMFoBIGEg-60_19_Carolina_Barrientos_MaAgustinaFernandez-1-1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 194,
+    "number": 194,
+    "name": "Nelsa Zulema Anapé Gadea Galán",
+    "shortName": "Nelsa Zulema",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWSnsFoBIGEg-7c_82_NelsaGADEA_MelissaMartinez_21.png?auto=format%2Ccompress&rect=0%2C0%2C3000%2C3000&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 195,
+    "number": 195,
+    "name": "Julio Oscar César Rodríguez Rodríguez",
+    "shortName": "Julio Oscar",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWS68FoBIGEg-78_171_JulioOscarRODRI%CC%81GUEZ_DanielaFernandez_21.png?auto=format%2Ccompress&rect=0%2C0%2C2044%2C2044&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 196,
+    "number": 196,
+    "name": "Félix Antonio Rodríguez Liberto",
+    "shortName": "Félix Antonio",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWTccFoBIGEg-8e_169_Fe%CC%81lixRODRI%CC%81GUEZ_GastonChavat1.png?auto=format%2Ccompress&rect=0%2C0%2C2717%2C2717&w=512&h=512&fit=crop"
+  },
+  {
+    "id": 197,
+    "number": 197,
+    "name": "Carlos Bonavita Espínola",
+    "shortName": "Carlos Bonavita",
+    "image": "https://images.prismic.io/197historiasilustradas/aaWT78FoBIGEg-9H_29_CarlosBONAVITA_FabricioLombardo_Cuadrado1.png?auto=format%2Ccompress&rect=0%2C0%2C2400%2C2400&w=512&h=512&fit=crop"
+  }
+]

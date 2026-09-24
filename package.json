@@ -1,0 +1,19 @@
+{
+  "name": "197-historias-ilustradas-interactive-gallery",
+  "version": "1.0.0",
+  "description": "Standalone, production-ready interactive memorial gallery replicating the 2D pan motion and archival aesthetic of 197 Historias Ilustradas",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "interactive-gallery",
+    "trackpad-panning",
+    "lerp-physics",
+    "memorial-archive",
+    "react",
+    "tailwind"
+  ],
+  "author": "Creative Technologist",
+  "license": "MIT"
+}
