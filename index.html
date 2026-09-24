@@ -7218,6 +7218,56 @@
         return () => window.removeEventListener('keydown', onKeyDown);
       }, []);
 
+      // --- START SCREEN SCROLL DISMISSAL LISTENER ---
+      useEffect(() => {
+        if (!showIntro) return;
+
+        let touchStartY = null;
+
+        const handleIntroWheel = (e) => {
+          if (Math.abs(e.deltaY) > 4 || Math.abs(e.deltaX) > 4) {
+            storyAudio.playTap();
+            setShowIntro(false);
+          }
+        };
+
+        const handleTouchStart = (e) => {
+          if (e.touches.length === 1) {
+            touchStartY = e.touches[0].clientY;
+          }
+        };
+
+        const handleTouchMove = (e) => {
+          if (touchStartY !== null && e.touches.length === 1) {
+            const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+            if (diffY > 10) {
+              storyAudio.playTap();
+              setShowIntro(false);
+              touchStartY = null;
+            }
+          }
+        };
+
+        const handleIntroKeyDown = (e) => {
+          if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', 'Enter'].includes(e.code)) {
+            storyAudio.playTap();
+            setShowIntro(false);
+          }
+        };
+
+        window.addEventListener('wheel', handleIntroWheel, { passive: true });
+        window.addEventListener('touchstart', handleTouchStart, { passive: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: true });
+        window.addEventListener('keydown', handleIntroKeyDown);
+
+        return () => {
+          window.removeEventListener('wheel', handleIntroWheel);
+          window.removeEventListener('touchstart', handleTouchStart);
+          window.removeEventListener('touchmove', handleTouchMove);
+          window.removeEventListener('keydown', handleIntroKeyDown);
+        };
+      }, [showIntro]);
+
       const openStory = (story) => {
         storyAudio.playTap();
         setSelectedStory(story);
@@ -7234,7 +7284,9 @@
           {/* STARTING SCREEN (Minimal, Same Tone, Same CSS Layout)    */}
           {/* ======================================================== */}
           {showIntro && (
-            <div className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] font-mono flex flex-col justify-between p-6 md:p-12 animate-page select-none">
+            <div
+              className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] font-mono flex flex-col justify-between p-6 md:p-12 animate-page select-none"
+            >
               
               {/* Top Bar */}
               <div className="flex items-center justify-between text-[13px] tracking-wide uppercase">
@@ -7271,13 +7323,16 @@
                   </p>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col items-center gap-2">
                   <button
                     onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
                     className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-[12px] md:text-[13px] uppercase tracking-widest bg-black text-white hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <span>[ {lang === 'es' ? 'ENTRAR AL ARCHIVO' : 'ENTER ARCHIVE'} ]</span>
                   </button>
+                  <span className="text-[10px] text-neutral-400 tracking-widest uppercase pt-1">
+                    ↓ {lang === 'es' ? 'desplázate para entrar' : 'scroll to enter'}
+                  </span>
                 </div>
               </div>
 
