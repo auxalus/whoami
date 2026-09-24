@@ -7414,15 +7414,15 @@
 ];
 
     const CATEGORIES = [
-      { id: 'all', label: { es: 'Todas las historias', en: 'All Stories' } },
-      { id: 'Fine line Stories', label: { es: 'Fine line Stories', en: 'Fine line Stories' } },
-      { id: 'Inner Stories', label: { es: 'Inner Stories', en: 'Inner Stories' } },
-      { id: 'Love Stories', label: { es: 'Love Stories', en: 'Love Stories' } },
-      { id: 'Midfield Stories', label: { es: 'Midfield Stories', en: 'Midfield Stories' } },
-      { id: 'Neighborhood Stories', label: { es: 'Neighborhood Stories', en: 'Neighborhood Stories' } },
-      { id: 'New World Stories', label: { es: 'New World Stories', en: 'New World Stories' } },
-      { id: 'Outer Stories', label: { es: 'Outer Stories', en: 'Outer Stories' } },
-      { id: 'Rhythmic Stories', label: { es: 'Rhythmic Stories', en: 'Rhythmic Stories' } }
+      { id: 'all', label: 'All Stories' },
+      { id: 'Fine line Stories', label: 'Fine line Stories' },
+      { id: 'Inner Stories', label: 'Inner Stories' },
+      { id: 'Love Stories', label: 'Love Stories' },
+      { id: 'Midfield Stories', label: 'Midfield Stories' },
+      { id: 'Neighborhood Stories', label: 'Neighborhood Stories' },
+      { id: 'New World Stories', label: 'New World Stories' },
+      { id: 'Outer Stories', label: 'Outer Stories' },
+      { id: 'Rhythmic Stories', label: 'Rhythmic Stories' }
     ];
 
     // Story Audio Engine for Detail Page
@@ -7524,7 +7524,7 @@
     // ====================================================================
     // FULL-PAGE ARTWORK DETAIL VIEW
     // ====================================================================
-    function ArtworkDetailPage({ story, lang, setLang, onClose }) {
+    function ArtworkDetailPage({ story, onClose }) {
       const [isStoryOpen, setIsStoryOpen] = useState(true);
       const [isPlaying, setIsPlaying] = useState(false);
       const [currentTime, setCurrentTime] = useState(53);
@@ -7569,7 +7569,7 @@
         };
       }, [onClose]);
 
-      const storyContent = story.storyText ? story.storyText[lang] : (story.bio ? story.bio[lang] : '');
+      const storyContent = (story.storyText && story.storyText.en) ? story.storyText.en : (story.bio && story.bio.en ? story.bio.en : (typeof story.bio === 'string' ? story.bio : ''));
 
       return (
         <div className="fixed inset-0 z-50 bg-[#FAFAFA] text-[#000000] overflow-y-auto font-mono text-[13px] animate-page scroll-smooth select-text">
@@ -7679,34 +7679,22 @@
 
                   <div className="space-y-1">
                     <div className="text-[11px] text-[#787670]">Age</div>
-                    <div className="text-black">{lang === 'es' ? story.calculatedAgeEs : story.calculatedAge}</div>
+                    <div className="text-black">{story.calculatedAge || (story.age ? story.age + ' years old' : '')}</div>
                   </div>
                 </div>
               </div>
 
             </main>
 
-            {/* Bottom Footer: Artist on left, Language Switch on right */}
-            <footer className="flex items-end justify-between font-mono text-xs mt-12 pt-6 select-none">
+            {/* Bottom Footer: Artist on left, memorial tag on right */}
+            <footer className="flex items-end justify-between font-mono text-xs mt-12 pt-6 select-none border-t border-black/10">
               <div className="space-y-1">
                 <div className="text-[11px] text-[#787670]">Artist</div>
                 <div className="text-black font-medium">{story.artist}</div>
               </div>
 
-              <div className="flex items-center space-x-2 text-[13px]">
-                <button
-                  onClick={() => setLang('es')}
-                  className={'hover:opacity-70 transition-opacity ' + (lang === 'es' ? 'underline underline-offset-4' : '')}
-                >
-                  ES
-                </button>
-                <span>/</span>
-                <button
-                  onClick={() => setLang('en')}
-                  className={'hover:opacity-70 transition-opacity ' + (lang === 'en' ? 'underline underline-offset-4' : '')}
-                >
-                  EN
-                </button>
+              <div className="text-[11px] text-[#787670] uppercase tracking-wider">
+                197 ILLUSTRATED STORIES
               </div>
             </footer>
 
@@ -7774,7 +7762,6 @@
     // ====================================================================
     function App() {
       const [showIntro, setShowIntro] = useState(true);
-      const [lang, setLang] = useState('en');
       const [view, setView] = useState('grid');
       const [selectedStory, setSelectedStory] = useState(null);
       const [selectedCategory, setSelectedCategory] = useState('all');
@@ -8093,46 +8080,31 @@
                   onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
                   className="hover:opacity-70 transition-opacity text-[13px] uppercase tracking-wider"
                 >
-                  [ {lang === 'es' ? 'OMITIR →' : 'SKIP →'} ]
+                  [ SKIP → ]
                 </button>
               </div>
 
               {/* Center Content: Minimal Poetic Paragraph */}
               <div className="max-w-2xl mx-auto text-center px-4 my-auto space-y-7 animate-fadeIn">
                 <div className="text-[11px] uppercase tracking-[0.25em] text-neutral-400">
-                  MEMORIAL · ARCHIVO DIGITAL
+                  MEMORIAL · DIGITAL ARCHIVE
                 </div>
 
                 <div className="space-y-5 text-[13px] md:text-sm leading-relaxed text-neutral-900 font-mono">
                   <p>
-                    {lang === 'es'
-                      ? 'Entre las décadas de 1970 y 1980, tanto Uruguay como Argentina vivieron dictaduras cívico-militares que dejaron una profunda huella en sus sociedades.'
-                      : 'Between the 1970s and 1980s, both Uruguay and Argentina endured civic-military dictatorships that left a deep mark on their societies.'}
+                    Between the 1970s and 1980s, both Uruguay and Argentina endured civic-military dictatorships that left a deep mark on their societies.
                   </p>
                   <p className="italic text-neutral-700 border-y border-neutral-200 py-3 text-[12px] md:text-[13px]">
-                    {lang === 'es'
-                      ? '“Recordar es volver a dar vida; porque solo lo que no se olvida sigue vivo.”'
-                      : '“To remember is to bring back to life; because only what is not forgotten stays alive.”'}
+                    “To remember is to bring back to life; because only what is not forgotten stays alive.”
                   </p>
                   <p className="text-[12px] md:text-[13px] text-neutral-500">
-                    {lang === 'es'
-                      ? '197 historias ilustradas es un proyecto que busca compartir la vida cotidiana de cada una de las personas detenidas desaparecidas.'
-                      : '197 illustrated stories is a project that seeks to share the everyday lives and memories of each of the people forcibly disappeared.'}
+                    197 illustrated stories is a memorial project that seeks to share the everyday lives and memories of each of the people forcibly disappeared.
                   </p>
                 </div>
 
                 <div className="pt-2 flex flex-col items-center gap-2">
-                  {/* Enter archive button commented out for now */}
-                  {/*
-                  <button
-                    onClick={() => { setShowIntro(false); storyAudio.playTap(); }}
-                    className="group relative inline-flex items-center gap-2 px-6 py-2.5 text-[12px] md:text-[13px] uppercase tracking-widest bg-black text-white hover:bg-neutral-800 transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    <span>[ {lang === 'es' ? 'ENTRAR AL ARCHIVO' : 'ENTER ARCHIVE'} ]</span>
-                  </button>
-                  */}
                   <span className="text-[10px] text-neutral-400 tracking-widest uppercase pt-2">
-                    ↓ {lang === 'es' ? 'arrastra o desplázate para entrar' : 'pan or scroll to enter'}
+                    ↓ pan or scroll to enter
                   </span>
                 </div>
               </div>
@@ -8140,22 +8112,7 @@
               {/* Bottom Bar */}
               <div className="flex items-center justify-between text-[11px] md:text-xs tracking-wider uppercase text-neutral-400">
                 <span>197 HISTORIAS ILUSTRADAS</span>
-                
-                <div className="flex items-center space-x-2 text-[13px] text-black font-mono">
-                  <button
-                    onClick={() => setLang('es')}
-                    className={'hover:text-black transition-colors ' + (lang === 'es' ? 'font-bold underline underline-offset-4 decoration-1' : 'text-neutral-500')}
-                  >
-                    ES
-                  </button>
-                  <span className="text-neutral-300">/</span>
-                  <button
-                    onClick={() => setLang('en')}
-                    className={'hover:text-black transition-colors ' + (lang === 'en' ? 'font-bold underline underline-offset-4 decoration-1' : 'text-neutral-500')}
-                  >
-                    EN
-                  </button>
-                </div>
+                <span>MEMORIAL DIGITAL ARCHIVE</span>
               </div>
             </div>
           )}
@@ -8174,19 +8131,19 @@
               <nav aria-label="View Switcher" className="flex items-center space-x-6 text-[13px]">
                 <button
                   onClick={() => { setView('grid'); storyAudio.playTap(); }}
-                  className={`transition-colors ${view === 'grid' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}`}
+                  className={'transition-colors ' + (view === 'grid' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500')}
                 >
                   [ GRID ]
                 </button>
                 <button
                   onClick={() => { setView('list'); storyAudio.playTap(); }}
-                  className={`transition-colors ${view === 'list' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}`}
+                  className={'transition-colors ' + (view === 'list' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500')}
                 >
                   [ LIST ]
                 </button>
                 <button
                   onClick={() => { setView('gallery'); storyAudio.playTap(); }}
-                  className={`transition-colors ${view === 'gallery' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500'}`}
+                  className={'transition-colors ' + (view === 'gallery' ? 'font-medium text-black underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-900 hover:text-neutral-500')}
                 >
                   [ GALLERY ]
                 </button>
@@ -8221,31 +8178,6 @@
           </header>
 
           {/* ======================================================== */}
-          {/* BOTTOM-RIGHT FIXED LANGUAGE SWITCHER (ES / EN)           */}
-          {/* ======================================================== */}
-          {!selectedStory && (
-            <footer className="fixed bottom-7 right-8 z-40">
-              <div className="flex items-center space-x-2 text-[13px] tracking-widest uppercase font-mono">
-                <button
-                  onClick={() => setLang('es')}
-                  aria-label="Cambiar a Español"
-                  className={`hover:text-black transition-colors font-medium ${lang === 'es' ? 'text-black font-semibold underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-800'}`}
-                >
-                  ES
-                </button>
-                <span className="text-neutral-400">/</span>
-                <button
-                  onClick={() => setLang('en')}
-                  aria-label="Switch to English"
-                  className={`hover:text-black transition-colors ${lang === 'en' ? 'text-black font-semibold underline underline-offset-4 decoration-1 decoration-black' : 'text-neutral-800'}`}
-                >
-                  EN
-                </button>
-              </div>
-            </footer>
-          )}
-
-          {/* ======================================================== */}
           {/* COLLAPSIBLE FILTERS MENU OVERLAY                        */}
           {/* ======================================================== */}
           {isFilterOpen && (
@@ -8261,7 +8193,7 @@
                     onClick={() => { setSelectedCategory(cat.id); setIsFilterOpen(false); }}
                     className={'w-full text-left py-1 px-1.5 transition-colors flex items-center justify-between ' + (selectedCategory === cat.id ? 'bg-black text-[#FAFAFA]' : 'hover:bg-black/5 text-black')}
                   >
-                    <span>{cat.label[lang]}</span>
+                    <span>{cat.label}</span>
                     {selectedCategory === cat.id && <span>✓</span>}
                   </button>
                 ))}
@@ -8359,8 +8291,6 @@
           {selectedStory && (
             <ArtworkDetailPage
               story={selectedStory}
-              lang={lang}
-              setLang={setLang}
               onClose={() => setSelectedStory(null)}
             />
           )}
@@ -8450,30 +8380,24 @@
                   197 HISTORIAS ILUSTRADAS
                 </div>
                 <h2 className="font-serif text-3xl font-bold mb-4 text-black">
-                  {lang === 'es' ? 'Sobre el Proyecto' : 'About the Project'}
+                  About the Project
                 </h2>
 
                 <div className="font-serif text-base text-gray-800 leading-relaxed space-y-4">
                   <p>
-                    {lang === 'es'
-                      ? 'Entre las décadas de 1970 y 1980, tanto Uruguay como Argentina vivieron dictaduras cívico-militares que dejaron una profunda huella en sus sociedades.'
-                      : 'Between the 1970s and 1980s, both Uruguay and Argentina endured civic-military dictatorships that left a deep mark on their societies.'}
+                    Between the 1970s and 1980s, both Uruguay and Argentina endured civic-military dictatorships that left a deep mark on their societies.
                   </p>
                   <p className="italic font-serif text-black border-l-2 border-black pl-4 my-3">
-                    {lang === 'es'
-                      ? '"Recordar es volver a dar vida; porque solo lo que no se olvida sigue vivo."'
-                      : '"To remember is to bring back to life; because only what is not forgotten stays alive."'}
+                    “To remember is to bring back to life; because only what is not forgotten stays alive.”
                   </p>
                   <p>
-                    {lang === 'es'
-                      ? '197 historias ilustradas es un proyecto que busca compartir la vida cotidiana de cada una de las personas detenidas desaparecidas nacidas en Uruguay o bajo responsabilidad del Estado uruguayo.'
-                      : '197 illustrated stories is a project that seeks to share the everyday lives of each of the people forcibly disappeared who were born in Uruguay, or under the responsibility of the Uruguayan State.'}
+                    197 illustrated stories is a project that seeks to share the everyday lives and memories of each of the people forcibly disappeared who were born in Uruguay, or under the responsibility of the Uruguayan State.
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-black/15 text-[10px] text-gray-500 flex justify-between uppercase">
-                  <span>MEMORIAL DIGITAL</span>
-                  <span>197 HISTORIAS</span>
+                  <span>DIGITAL MEMORIAL</span>
+                  <span>197 STORIES</span>
                 </div>
               </div>
             </div>
