@@ -85,6 +85,17 @@ export function Header({
         >
           {lang === 'es' ? 'Galería' : 'Gallery'}
         </button>
+        <button
+          onClick={() => setView('add-yours')}
+          className={`px-3 py-1 font-mono text-xs uppercase tracking-wider transition-all rounded-sm border ${
+            view === 'add-yours'
+              ? 'bg-[#121212] text-[#f5f4f0] border-[#121212] shadow-sm font-bold'
+              : 'border-[#121212]/30 text-[#121212] bg-[#121212]/5 hover:bg-[#121212] hover:text-[#f5f4f0] font-semibold'
+          }`}
+          title="Add Yours"
+        >
+          {lang === 'es' ? 'Añadir' : 'Add Yours'}
+        </button>
       </div>
 
       {/* Right: Search, About, Language toggle & HUD */}

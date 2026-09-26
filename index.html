@@ -8147,6 +8147,12 @@
                 >
                   [ GALLERY ]
                 </button>
+                <button
+                  onClick={() => { setView('add-yours'); storyAudio.playTap(); }}
+                  className={'transition-all px-2.5 py-0.5 rounded border text-[12px] ' + (view === 'add-yours' ? 'bg-black text-white border-black font-semibold shadow-sm' : 'border-black text-black bg-black/[0.06] hover:bg-black hover:text-white hover:border-black font-semibold')}
+                >
+                  [ ADD YOURS ]
+                </button>
               </nav>
 
               <div>
@@ -8281,6 +8287,17 @@
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* VIEW 4: ADD YOURS (BLANK PAGE)                           */}
+          {/* ======================================================== */}
+          {view === 'add-yours' && (
+            <div data-scrollable="true" className="w-full h-full pt-36 pb-24 px-6 md:px-16 overflow-y-auto font-mono">
+              <div className="max-w-4xl mx-auto min-h-[60vh]">
+                {/* Blank page section ready for future content */}
               </div>
             </div>
           )}

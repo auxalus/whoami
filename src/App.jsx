@@ -237,6 +237,14 @@ export default function App() {
         />
       )}
 
+      {view === 'add-yours' && (
+        <div data-scrollable="true" className="w-full h-full pt-28 pb-20 px-4 md:px-12 overflow-y-auto font-mono">
+          <div className="max-w-4xl mx-auto min-h-[60vh]">
+            {/* Blank page */}
+          </div>
+        </div>
+      )}
+
       {/* 4. Modals */}
       <DetailModal
         story={selectedStory}
