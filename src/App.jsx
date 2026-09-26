@@ -11,6 +11,7 @@ import { SearchModal } from './components/SearchModal';
 import { AboutModal } from './components/AboutModal';
 import { PhysicsHUD } from './components/PhysicsHUD';
 import { MiniMap } from './components/MiniMap';
+import { AddYoursView } from './components/AddYoursView';
 
 // Subtle Web Audio chime synthesizer
 class SoundEngine {
@@ -63,7 +64,7 @@ const soundEngine = new SoundEngine();
 
 export default function App() {
   const [lang, setLang] = useState('es'); // 'es' | 'en'
-  const [view, setView] = useState('grid'); // 'grid' | 'list' | 'gallery'
+  const [view, setView] = useState('grid'); // 'grid' | 'list' | 'gallery' | 'add-yours'
   const [selectedStory, setSelectedStory] = useState(null);
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterCity, setFilterCity] = useState('all');
@@ -73,6 +74,33 @@ export default function App() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isHudOpen, setIsHudOpen] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(false);
+
+  const [customStories, setCustomStories] = useState(() => {
+    try {
+      const saved = localStorage.getItem('historias_custom_stories_v1');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const allStories = useMemo(() => {
+    return [...STORIES_DATA, ...customStories];
+  }, [customStories]);
+
+  const nextAssignedNumber = STORIES_DATA.length + customStories.length + 1;
+
+  const handleAddStory = (newStory) => {
+    setCustomStories(prev => {
+      const updated = [...prev, newStory];
+      try {
+        localStorage.setItem('historias_custom_stories_v1', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('LocalStorage error', e);
+      }
+      return updated;
+    });
+  };
 
   // Tunable Inertia Physics
   const [damping, setDamping] = useState(0.08);
@@ -99,21 +127,20 @@ export default function App() {
 
   // Filtered stories dataset
   const filteredStories = useMemo(() => {
-    return STORIES_DATA.filter(item => {
+    return allStories.filter(item => {
       if (filterCategory !== 'all' && item.category !== filterCategory) return false;
       if (filterCity !== 'all' && item.city !== filterCity) return false;
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchName = item.name.toLowerCase().includes(q);
-        const matchCode = item.code.includes(q);
-        const matchBio = item.bio.es.toLowerCase().includes(q) || item.bio.en.toLowerCase().includes(q);
-        const matchTag = item.tagline.es.toLowerCase().includes(q) || item.tagline.en.toLowerCase().includes(q);
-        const matchIll = item.illustrator.toLowerCase().includes(q);
-        if (!matchName && !matchCode && !matchBio && !matchTag && !matchIll) return false;
+        const matchCode = (item.code || String(item.number)).includes(q);
+        const matchBio = (item.bio?.es || item.bio || '').toLowerCase().includes(q) || (item.bio?.en || item.bio || '').toLowerCase().includes(q);
+        const matchTag = (item.tagline?.es || '').toLowerCase().includes(q) || (item.tagline?.en || '').toLowerCase().includes(q);
+        if (!matchName && !matchCode && !matchBio && !matchTag) return false;
       }
       return true;
     });
-  }, [filterCategory, filterCity, searchQuery]);
+  }, [allStories, filterCategory, filterCity, searchQuery]);
 
   // Audio trigger
   const toggleAudio = () => {
@@ -238,9 +265,14 @@ export default function App() {
       )}
 
       {view === 'add-yours' && (
-        <div data-scrollable="true" className="w-full h-full pt-28 pb-20 px-4 md:px-12 overflow-y-auto font-mono">
+        <div data-scrollable="true" className="w-full h-full pt-28 pb-20 px-4 md:px-12 overflow-y-auto font-mono scroll-smooth">
           <div className="max-w-4xl mx-auto min-h-[60vh]">
-            {/* Blank page */}
+            <AddYoursView
+              nextNumber={nextAssignedNumber}
+              onAddStory={handleAddStory}
+              onSelectStory={(story) => setSelectedStory(story)}
+              userStories={customStories}
+            />
           </div>
         </div>
       )}
