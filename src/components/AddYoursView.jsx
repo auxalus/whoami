@@ -66,7 +66,7 @@ export const GOOGLE_CLIENT_ID =
   "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
 
 // Contributor Auth Session (Persisted in localStorage)
-export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStories = [] }) {
+export function AddYoursView({ nextNumber, onAddStory, onDeleteStory, onSelectStory, userStories = [] }) {
   const [authUser, setAuthUser] = useState(() => {
     try {
       const saved = localStorage.getItem('contributor_auth_session_v1');
@@ -85,12 +85,15 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
   const [userPassError, setUserPassError] = useState('');
 
   // Phone OTP States (Right Side)
-  const [phoneCountry, setPhoneCountry] = useState('+598');
+  const [phoneCountry, setPhoneCountry] = useState('+91');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [generatedOtp, setGeneratedOtp] = useState('');
   const [enteredOtp, setEnteredOtp] = useState('');
   const [phoneAuthError, setPhoneAuthError] = useState('');
+
+  // Edit State
+  const [editingStoryId, setEditingStoryId] = useState(null);
 
   // Form States
   const [photos, setPhotos] = useState(['', '', '']);
@@ -106,6 +109,49 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
   const [successStory, setSuccessStory] = useState(null);
 
   const parsedSong = useMemo(() => parseSongUrl(songUrl), [songUrl]);
+
+  // Find currently editing story if any
+  const editingStory = useMemo(() => {
+    if (!editingStoryId) return null;
+    return userStories.find(s => s.id === editingStoryId) || null;
+  }, [editingStoryId, userStories]);
+
+  // Helper: Client-side canvas image compression to prevent LocalStorage Quota Exceeded
+  const compressImageFile = (file, callback) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        const maxDim = 1000;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+        callback(dataUrl);
+      };
+      img.onerror = () => {
+        callback(e.target.result);
+      };
+      img.src = e.target.result;
+    };
+    reader.onerror = () => {
+      setErrorMessage('Failed to read image file.');
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Decode JWT payload helper
   const decodeJwtPayload = (token) => {
@@ -272,6 +318,8 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
     setAuthUser(userSession);
     if (!name) setName(userSession.name);
     setPhoneAuthError('');
+  };
+
   const handleSignOut = () => {
     try {
       localStorage.removeItem('contributor_auth_session_v1');
@@ -284,6 +332,7 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
     setAuthError('');
     setPhoneAuthError('');
     setUserPassError('');
+    setEditingStoryId(null);
   };
 
   const handleFileChange = (slotIndex, file) => {
@@ -293,15 +342,13 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
       return;
     }
     setErrorMessage('');
-    const reader = new FileReader();
-    reader.onload = (e) => {
+    compressImageFile(file, (optimizedDataUrl) => {
       setPhotos(prev => {
         const next = [...prev];
-        next[slotIndex] = e.target.result;
+        next[slotIndex] = optimizedDataUrl;
         return next;
       });
-    };
-    reader.readAsDataURL(file);
+    });
   };
 
   const handleRemovePhoto = (slotIndex) => {
@@ -324,74 +371,167 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
     }
   };
 
+  // Start editing an existing submission
+  const handleStartEdit = (story) => {
+    if (!story) return;
+    setEditingStoryId(story.id);
+    setName(story.name || '');
+    setParagraph(story.bio?.en || story.storyText?.en || story.tagline?.en || '');
+    
+    // Populate photos
+    const imgs = Array.isArray(story.images) && story.images.length > 0 
+      ? story.images 
+      : (story.image ? [story.image] : []);
+    setPhotos([imgs[0] || '', imgs[1] || '', imgs[2] || '']);
+    
+    setSongUrl(story.songUrl || '');
+    setCity(story.city || 'Montevideo');
+    setYear(story.year || new Date().getFullYear());
+    setSuccessStory(null);
+    setErrorMessage('');
+
+    // Smooth scroll to form container
+    const formEl = document.getElementById('contributor-form-container');
+    if (formEl) {
+      formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingStoryId(null);
+    setPhotos(['', '', '']);
+    setName(authUser ? (authUser.name || '') : '');
+    setParagraph('');
+    setSongUrl('');
+    setCity('Montevideo');
+    setYear(new Date().getFullYear());
+    setErrorMessage('');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrorMessage('');
 
     if (!name.trim()) {
-      setErrorMessage('Please enter your name.');
+      setErrorMessage('Please enter your name or memorial title.');
       return;
     }
     if (!paragraph.trim()) {
       setErrorMessage('Please write your paragraph or story.');
       return;
     }
-    if (!photos[0] && !photos[1] && !photos[2]) {
-      setErrorMessage('Please upload at least 1 photo for your memorial entry.');
-      return;
-    }
 
     const validPhotos = photos.filter(Boolean);
-    const primaryImage = validPhotos[0] || 'https://images.prismic.io/197historiasilustradas/aaB68sFoBIGEg35F_figure-193.jpg?auto=format%2Ccompress&w=512&h=512&fit=crop';
-    const codePad = String(nextNumber).padStart(3, '0');
+    const defaultPlaceholder = 'https://images.prismic.io/197historiasilustradas/aaB68sFoBIGEg35F_figure-193.jpg?auto=format%2Ccompress&w=512&h=512&fit=crop';
+    const primaryImage = validPhotos[0] || defaultPlaceholder;
+    const allPhotos = validPhotos.length > 0 ? validPhotos : [primaryImage];
 
-    const newStory = {
-      id: nextNumber,
-      number: nextNumber,
-      codePad: codePad,
-      name: name.trim(),
-      shortName: name.trim().split(' ')[0] || name.trim(),
-      displayTitle: name.trim(),
-      image: primaryImage,
-      images: validPhotos,
-      category: 'Inner Stories',
-      city: city.trim() || 'Living Memory',
-      year: parseInt(year, 10) || new Date().getFullYear(),
-      placeOfBirth: city.trim() || 'Living Memory',
-      dateOfBirth: 'Living Memory',
-      placeOfDisappearance: 'Living Archive',
-      dateOfDisappearance: 'Present & Remembered',
-      calculatedAge: 'Eternal Presence',
-      artist: name.trim() + ' (Self-Contribution)',
-      songUrl: songUrl.trim(),
-      songPlatform: parsedSong ? parsedSong.platform : null,
-      songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
-      tagline: {
-        es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
-        en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
-      },
-      bio: {
-        es: paragraph.trim(),
-        en: paragraph.trim()
-      },
-      storyText: {
-        es: paragraph.trim(),
-        en: paragraph.trim()
-      },
-      isUserSubmitted: true,
-      contributorAuth: authUser ? authUser.provider : 'anonymous',
-      submittedAt: new Date().toLocaleDateString()
-    };
+    if (editingStoryId) {
+      // Update existing story
+      const existing = userStories.find(s => s.id === editingStoryId);
+      const storyId = editingStoryId;
+      const codePad = existing?.codePad || String(storyId).padStart(3, '0');
+      const number = existing?.number || storyId;
 
-    onAddStory(newStory);
-    setSuccessStory(newStory);
+      const updatedStory = {
+        ...(existing || {}),
+        id: storyId,
+        number: number,
+        codePad: codePad,
+        name: name.trim(),
+        shortName: name.trim().split(' ')[0] || name.trim(),
+        displayTitle: name.trim(),
+        image: primaryImage,
+        images: allPhotos,
+        category: existing?.category || 'Inner Stories',
+        city: city.trim() || 'Montevideo',
+        year: parseInt(year, 10) || new Date().getFullYear(),
+        placeOfBirth: city.trim() || 'Montevideo',
+        dateOfBirth: existing?.dateOfBirth || 'Living Memory',
+        placeOfDisappearance: existing?.placeOfDisappearance || 'Living Archive',
+        dateOfDisappearance: existing?.dateOfDisappearance || 'Present & Remembered',
+        calculatedAge: existing?.calculatedAge || 'Eternal Presence',
+        artist: name.trim() + (authUser ? ' (@' + (authUser.name || authUser.username || 'Contributor') + ')' : ' (Self-Contribution)'),
+        songUrl: songUrl.trim(),
+        songPlatform: parsedSong ? parsedSong.platform : null,
+        songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
+        tagline: {
+          es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
+          en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
+        },
+        bio: {
+          es: paragraph.trim(),
+          en: paragraph.trim()
+        },
+        storyText: {
+          es: paragraph.trim(),
+          en: paragraph.trim()
+        },
+        isUserSubmitted: true,
+        contributorAuth: authUser ? authUser.provider : (existing?.contributorAuth || 'verified'),
+        submittedAt: existing?.submittedAt || new Date().toLocaleDateString(),
+        lastEditedAt: new Date().toLocaleDateString()
+      };
+
+      onAddStory(updatedStory);
+      setSuccessStory(updatedStory);
+      setEditingStoryId(null);
+    } else {
+      // Create new story
+      const codePad = String(nextNumber).padStart(3, '0');
+      const newStory = {
+        id: nextNumber,
+        number: nextNumber,
+        codePad: codePad,
+        name: name.trim(),
+        shortName: name.trim().split(' ')[0] || name.trim(),
+        displayTitle: name.trim(),
+        image: primaryImage,
+        images: allPhotos,
+        category: 'Inner Stories',
+        city: city.trim() || 'Montevideo',
+        year: parseInt(year, 10) || new Date().getFullYear(),
+        placeOfBirth: city.trim() || 'Montevideo',
+        dateOfBirth: 'Living Memory',
+        placeOfDisappearance: 'Living Archive',
+        dateOfDisappearance: 'Present & Remembered',
+        calculatedAge: 'Eternal Presence',
+        artist: name.trim() + (authUser ? ' (@' + (authUser.name || authUser.username || 'Contributor') + ')' : ' (Self-Contribution)'),
+        songUrl: songUrl.trim(),
+        songPlatform: parsedSong ? parsedSong.platform : null,
+        songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
+        tagline: {
+          es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
+          en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
+        },
+        bio: {
+          es: paragraph.trim(),
+          en: paragraph.trim()
+        },
+        storyText: {
+          es: paragraph.trim(),
+          en: paragraph.trim()
+        },
+        isUserSubmitted: true,
+        contributorAuth: authUser ? authUser.provider : 'verified',
+        submittedAt: new Date().toLocaleDateString()
+      };
+
+      onAddStory(newStory);
+      setSuccessStory(newStory);
+    }
   };
 
   const handleResetForm = () => {
+    setEditingStoryId(null);
     setPhotos(['', '', '']);
     setName(authUser ? (authUser.name || '') : '');
     setParagraph('');
     setSongUrl('');
+    setCity('Montevideo');
+    setYear(new Date().getFullYear());
     setSuccessStory(null);
     setErrorMessage('');
   };
@@ -544,14 +684,14 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
                     </label>
                     <div className="flex gap-2">
                       <div className="bg-neutral-100 border border-black px-3 py-2.5 font-mono text-xs font-bold flex items-center gap-1.5 select-none text-neutral-800">
-                        <span>🇺🇾</span>
-                        <span>+598</span>
+                        <span>🇮🇳</span>
+                        <span>+91</span>
                       </div>
                       <input
                         type="tel"
                         value={phoneNumber}
                         onChange={(e) => { setPhoneNumber(e.target.value); setPhoneAuthError(''); }}
-                        placeholder="099 123 456"
+                        placeholder="98765 43210"
                         className="flex-1 bg-white border border-black px-3 py-2.5 font-mono text-xs focus:outline-none focus:ring-1 focus:ring-black"
                       />
                     </div>
@@ -627,10 +767,10 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
   }
 
   // =========================================================================
-  // VIEW 2: AUTHENTICATED ADD YOURS SUBMISSION FORM
+  // VIEW 2: AUTHENTICATED ADD YOURS SUBMISSION FORM (OR EDIT VIEW)
   // =========================================================================
   return (
-    <div className="font-mono text-black">
+    <div id="contributor-form-container" className="font-mono text-black">
       {/* Authenticated Contributor Status Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-neutral-100 border border-black mb-8 text-xs font-mono">
         <div className="flex items-center gap-2.5">
@@ -639,7 +779,7 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
             VERIFIED CONTRIBUTOR: <strong>{authUser.name || authUser.phone}</strong> {authUser.email ? `(${authUser.email})` : ''}
           </span>
           <span className="text-[10px] px-1.5 py-0.5 bg-black text-white font-bold uppercase tracking-wider">
-            {authUser.provider === 'google' ? 'GOOGLE OAUTH' : 'PHONE OTP'}
+            {authUser.provider === 'google' ? 'GOOGLE OAUTH' : (authUser.provider === 'phone' ? 'PHONE OTP' : 'CREDENTIALS')}
           </span>
         </div>
         <button
@@ -651,22 +791,44 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
         </button>
       </div>
 
-      {/* Header Banner with Assigned Registry Number */}
+      {/* Header Banner with Assigned Registry Number or Edit State */}
       <div className="border-b border-black/15 pb-8 mb-10">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            ASSIGNED ARCHIVE REGISTRY NO. #{String(nextNumber).padStart(3, '0')}
-          </div>
-          <div className="text-xs text-neutral-500 font-mono uppercase tracking-wider">
-            PERMANENT LIVING ARCHIVE
+          {editingStory ? (
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500 text-black text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-black animate-ping"></span>
+              EDITING ARCHIVE REGISTRY NO. #{editingStory.codePad || String(editingStory.id).padStart(3, '0')}
+            </div>
+          ) : (
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              ASSIGNED ARCHIVE REGISTRY NO. #{String(nextNumber).padStart(3, '0')}
+            </div>
+          )}
+          
+          <div className="flex items-center gap-3">
+            {editingStory && (
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                className="text-xs px-2.5 py-1 border border-black bg-white hover:bg-neutral-100 font-bold uppercase"
+              >
+                [ ✕ CANCEL EDIT ]
+              </button>
+            )}
+            <div className="text-xs text-neutral-500 font-mono uppercase tracking-wider">
+              PERMANENT LIVING ARCHIVE
+            </div>
           </div>
         </div>
+
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-black tracking-tight mb-2">
-          Add Your Story to the Memorial
+          {editingStory ? `Edit Story: ${editingStory.name}` : 'Add Your Story to the Memorial'}
         </h1>
         <p className="text-sm font-serif text-neutral-600 max-w-2xl leading-relaxed">
-          Contribute your personal memory, portrait, and voice. Every submission receives a permanent assigned sequential number in the archive alongside the 197 illustrated stories.
+          {editingStory 
+            ? `Updating your existing memorial record #${editingStory.codePad || editingStory.id}. Changes will immediately refresh in the gallery and local archive.`
+            : 'Contribute your personal memory, portrait, and voice. Every submission receives a permanent assigned sequential number in the archive alongside the 197 illustrated stories.'}
         </p>
       </div>
 
@@ -675,10 +837,10 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
         <div className="bg-white border-2 border-black p-6 md:p-8 shadow-2xl mb-12 animate-fadeIn">
           <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-6">
             <div className="flex items-center gap-2 text-emerald-700 font-bold text-sm uppercase tracking-wide">
-              <span>✓</span> ENTRY #{successStory.codePad} RECORDED SUCCESSFULLY
+              <span>✓</span> ENTRY #{successStory.codePad} SAVED SUCCESSFULLY
             </div>
             <div className="text-xs text-neutral-500 font-mono">
-              {successStory.submittedAt}
+              {successStory.lastEditedAt ? `Last edited: ${successStory.lastEditedAt}` : successStory.submittedAt}
             </div>
           </div>
           
@@ -710,6 +872,12 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
               [ VIEW YOUR STORY DETAIL ↗ ]
             </button>
             <button
+              onClick={() => handleStartEdit(successStory)}
+              className="px-5 py-3 border border-black bg-amber-50 hover:bg-amber-100 text-black text-xs font-mono font-bold tracking-wider uppercase transition-all flex items-center gap-1"
+            >
+              <span>✎</span> [ EDIT THIS ENTRY ]
+            </button>
+            <button
               onClick={handleResetForm}
               className="px-5 py-3 border border-black text-black hover:bg-black hover:text-white text-xs font-mono font-bold tracking-wider uppercase transition-all"
             >
@@ -719,18 +887,25 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
         </div>
       )}
 
-      {/* Submission Form */}
+      {/* Submission / Edit Form */}
       {!successStory && (
         <form onSubmit={handleSubmit} className="space-y-8 bg-white border border-black p-6 md:p-10 shadow-sm">
           
+          {editingStory && (
+            <div className="p-3 bg-amber-50 border border-amber-400 text-amber-900 text-xs font-mono flex items-center justify-between">
+              <span>✎ You are currently editing entry #{editingStory.codePad} ({editingStory.name}).</span>
+              <button type="button" onClick={handleCancelEdit} className="underline font-bold">[✕ Cancel Edit]</button>
+            </div>
+          )}
+
           {/* Photo Upload Slots (3 Slots) */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <label className="block text-xs font-bold uppercase tracking-wider font-mono">
-                01. UPLOAD PHOTOS (3 SLOTS) <span className="text-red-500">*</span>
+                01. UPLOAD PHOTOS (3 SLOTS)
               </label>
               <span className="text-[11px] text-neutral-500 font-mono">
-                {photos.filter(Boolean).length} of 3 uploaded
+                {photos.filter(Boolean).length} of 3 uploaded (Optional)
               </span>
             </div>
 
@@ -844,14 +1019,14 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
           {/* Your Name */}
           <div className="space-y-2">
             <label htmlFor="user-name-src" className="block text-xs font-bold uppercase tracking-wider font-mono">
-              02. YOUR NAME <span className="text-red-500">*</span>
+              02. YOUR NAME / MEMORIAL ENTRY TITLE <span className="text-red-500">*</span>
             </label>
             <input
               id="user-name-src"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Maria Gonzalez or Your Full Name"
+              placeholder="e.g. Maria Gonzalez or Memorial Subject Name"
               className="w-full bg-white border border-black px-4 py-3 font-mono text-sm text-black placeholder-neutral-400 outline-none focus:ring-2 focus:ring-black"
               required
             />
@@ -930,7 +1105,7 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="e.g. Montevideo, Buenos Aires, etc."
+                placeholder="e.g. Montevideo, Buenos Aires, Mumbai, etc."
                 className="w-full bg-white border border-black/40 px-3 py-2 font-mono text-xs text-black outline-none focus:border-black"
               />
             </div>
@@ -959,15 +1134,26 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
               type="submit"
               className="px-8 py-4 bg-black text-white hover:bg-neutral-800 text-xs font-mono font-bold tracking-widest uppercase transition-all shadow-md active:scale-[0.99]"
             >
-              [ SUBMIT TO MEMORIAL ARCHIVE → ]
+              {editingStory ? '[ SAVE CHANGES TO ARCHIVE ENTRY → ]' : '[ SUBMIT TO MEMORIAL ARCHIVE → ]'}
             </button>
-            <button
-              type="button"
-              onClick={handleResetForm}
-              className="px-5 py-4 border border-black/30 hover:border-black text-neutral-700 hover:text-black text-xs font-mono tracking-wider uppercase transition-all"
-            >
-              [ CLEAR FORM ]
-            </button>
+            
+            {editingStory ? (
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                className="px-5 py-4 border border-black text-black hover:bg-neutral-100 text-xs font-mono tracking-wider uppercase transition-all"
+              >
+                [ CANCEL EDIT ]
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleResetForm}
+                className="px-5 py-4 border border-black/30 hover:border-black text-neutral-700 hover:text-black text-xs font-mono tracking-wider uppercase transition-all"
+              >
+                [ CLEAR FORM ]
+              </button>
+            )}
           </div>
 
         </form>
@@ -981,43 +1167,83 @@ export function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStorie
               Your Contributions ({userStories.length})
             </h2>
             <span className="text-xs font-mono text-neutral-500">
-              SAVED IN LOCAL REGISTRY
+              SAVED IN LOCAL REGISTRY &bull; CLICK TO VIEW OR EDIT
             </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {userStories.map((story) => (
-              <div
-                key={story.id}
-                onClick={() => onSelectStory(story)}
-                className="group cursor-pointer border border-black bg-white p-4 hover:shadow-lg transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="aspect-square bg-[#eae8e2] overflow-hidden mb-3 border border-black/10">
-                    <img src={story.image} alt={story.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  </div>
-                  <div className="text-[11px] font-mono text-neutral-500 mb-1">
-                    #{story.codePad} // {story.city} ({story.year})
-                  </div>
-                  <div className="font-bold text-sm text-black truncate mb-2">
-                    {story.name}
-                  </div>
-                  <p className="text-xs text-neutral-600 line-clamp-2 font-mono leading-relaxed">
-                    {story.bio.en}
-                  </p>
-                </div>
+            {userStories.map((story) => {
+              const isCurrentlyEditing = editingStoryId === story.id;
 
-                {story.songEmbedUrl && (
-                  <div className="mt-3 pt-2 border-t border-black/10 text-[10px] font-mono text-emerald-700 flex items-center gap-1 font-semibold">
-                    <span>🎵</span> {story.songPlatform.toUpperCase()} SONG LINKED
+              return (
+                <div
+                  key={story.id}
+                  className={'border bg-white p-4 transition-all flex flex-col justify-between ' + 
+                    (isCurrentlyEditing ? 'border-amber-500 ring-2 ring-amber-400 bg-amber-50/20' : 'border-black hover:shadow-lg')}
+                >
+                  <div onClick={() => onSelectStory(story)} className="cursor-pointer group">
+                    <div className="aspect-square bg-[#eae8e2] overflow-hidden mb-3 border border-black/10 relative">
+                      <img src={story.image} alt={story.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      {isCurrentlyEditing && (
+                        <div className="absolute top-2 right-2 bg-amber-500 text-black text-[9px] font-mono font-bold px-1.5 py-0.5">
+                          EDITING NOW
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-[11px] font-mono text-neutral-500 mb-1">
+                      #{story.codePad} // {story.city} ({story.year})
+                    </div>
+                    <div className="font-bold text-sm text-black truncate mb-2">
+                      {story.name}
+                    </div>
+                    <p className="text-xs text-neutral-600 line-clamp-2 font-mono leading-relaxed">
+                      {story.bio.en}
+                    </p>
+
+                    {story.songEmbedUrl && (
+                      <div className="mt-3 pt-2 border-t border-black/10 text-[10px] font-mono text-emerald-700 flex items-center gap-1 font-semibold">
+                        <span>🎵</span> {story.songPlatform.toUpperCase()} SONG LINKED
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+
+                  {/* Actions Bar for the Contributor's Story */}
+                  <div className="mt-4 pt-3 border-t border-black/15 flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleStartEdit(story);
+                      }}
+                      className="px-3 py-1.5 bg-black text-white hover:bg-neutral-800 text-[10px] font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-1 shadow-sm"
+                    >
+                      <span>✎</span> EDIT ENTRY
+                    </button>
+                    {onDeleteStory && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (window.confirm(`Are you sure you want to remove entry #${story.codePad} (${story.name}) from the archive?`)) {
+                            onDeleteStory(story.id);
+                            if (editingStoryId === story.id) handleCancelEdit();
+                            if (successStory?.id === story.id) setSuccessStory(null);
+                          }
+                        }}
+                        className="px-2.5 py-1.5 border border-red-300 text-red-700 hover:bg-red-50 text-[10px] font-mono uppercase tracking-wider transition-all"
+                      >
+                        REMOVE
+                      </button>
+                    )}
+                  </div>
+
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
 
     </div>
   );
-}}
+}

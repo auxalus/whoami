@@ -90,9 +90,24 @@ export default function App() {
 
   const nextAssignedNumber = STORIES_DATA.length + customStories.length + 1;
 
-  const handleAddStory = (newStory) => {
+  const handleAddStory = (story) => {
     setCustomStories(prev => {
-      const updated = [...prev, newStory];
+      const exists = prev.some(item => item.id === story.id);
+      const updated = exists 
+        ? prev.map(item => item.id === story.id ? { ...item, ...story } : item)
+        : [...prev, story];
+      try {
+        localStorage.setItem('historias_custom_stories_v1', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('LocalStorage error', e);
+      }
+      return updated;
+    });
+  };
+
+  const handleDeleteStory = (storyId) => {
+    setCustomStories(prev => {
+      const updated = prev.filter(item => item.id !== storyId);
       try {
         localStorage.setItem('historias_custom_stories_v1', JSON.stringify(updated));
       } catch (e) {
@@ -270,6 +285,7 @@ export default function App() {
             <AddYoursView
               nextNumber={nextAssignedNumber}
               onAddStory={handleAddStory}
+              onDeleteStory={handleDeleteStory}
               onSelectStory={(story) => setSelectedStory(story)}
               userStories={customStories}
             />

@@ -7846,7 +7846,7 @@
     // Replace with your Google Client ID from Google Cloud Console:
     const GOOGLE_CLIENT_ID = (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.GOOGLE_CLIENT_ID) || window.GOOGLE_CLIENT_ID || "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
 
-    function AddYoursView({ nextNumber, onAddStory, onSelectStory, userStories = [] }) {
+    function AddYoursView({ nextNumber, onAddStory, onDeleteStory, onSelectStory, userStories = [] }) {
       // Contributor Auth Session (Persisted in localStorage)
       const [authUser, setAuthUser] = useState(() => {
         try {
@@ -7866,12 +7866,18 @@
       const [userPassError, setUserPassError] = useState('');
 
       // Phone OTP States (Right Side)
-      const [phoneCountry, setPhoneCountry] = useState('+598');
+      const [phoneCountry, setPhoneCountry] = useState('+91');
       const [phoneNumber, setPhoneNumber] = useState('');
       const [otpSent, setOtpSent] = useState(false);
       const [generatedOtp, setGeneratedOtp] = useState('');
       const [enteredOtp, setEnteredOtp] = useState('');
       const [phoneAuthError, setPhoneAuthError] = useState('');
+
+      // Editing existing submission state
+      const [editingStoryId, setEditingStoryId] = useState(null);
+      const editingStory = useMemo(() => {
+        return userStories.find(s => s.id === editingStoryId) || null;
+      }, [userStories, editingStoryId]);
 
       // Form States
       const [photos, setPhotos] = useState(['', '', '']);
@@ -8150,6 +8156,45 @@
         }
       };
 
+      // Start editing an existing submission
+      const handleStartEdit = (story) => {
+        if (!story) return;
+        setEditingStoryId(story.id);
+        setName(story.name || '');
+        setParagraph(story.bio?.en || story.storyText?.en || story.tagline?.en || '');
+        
+        // Populate photos
+        const imgs = Array.isArray(story.images) && story.images.length > 0 
+          ? story.images 
+          : (story.image ? [story.image] : []);
+        setPhotos([imgs[0] || '', imgs[1] || '', imgs[2] || '']);
+        
+        setSongUrl(story.songUrl || '');
+        setCity(story.city || 'Montevideo');
+        setYear(story.year || new Date().getFullYear());
+        setSuccessStory(null);
+        setErrorMessage('');
+
+        // Smooth scroll to form container
+        const formEl = document.getElementById('contributor-form-container');
+        if (formEl) {
+          formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      };
+
+      const handleCancelEdit = () => {
+        setEditingStoryId(null);
+        setPhotos(['', '', '']);
+        setName(authUser ? (authUser.name || '') : '');
+        setParagraph('');
+        setSongUrl('');
+        setCity('Montevideo');
+        setYear(new Date().getFullYear());
+        setErrorMessage('');
+      };
+
       const handleSubmit = (e) => {
         e.preventDefault();
         setErrorMessage('');
@@ -8167,52 +8212,107 @@
         const defaultPlaceholder = 'https://images.prismic.io/197historiasilustradas/aaB68sFoBIGEg35F_figure-193.jpg?auto=format%2Ccompress&w=512&h=512&fit=crop';
         const primaryImage = validPhotos[0] || defaultPlaceholder;
         const allPhotos = validPhotos.length > 0 ? validPhotos : [primaryImage];
-        const codePad = String(nextNumber).padStart(3, '0');
 
-        const newStory = {
-          id: nextNumber,
-          number: nextNumber,
-          codePad: codePad,
-          name: name.trim(),
-          shortName: name.trim().split(' ')[0] || name.trim(),
-          displayTitle: name.trim(),
-          image: primaryImage,
-          images: allPhotos,
-          category: 'Inner Stories',
-          city: city.trim() || 'Montevideo',
-          year: parseInt(year, 10) || new Date().getFullYear(),
-          placeOfBirth: city.trim() || 'Montevideo',
-          dateOfBirth: 'Living Memory',
-          placeOfDisappearance: 'Living Archive',
-          dateOfDisappearance: 'Present & Remembered',
-          calculatedAge: 'Eternal Presence',
-          artist: name.trim() + (authUser ? ' (@' + (authUser.name || authUser.username || 'Contributor') + ')' : ' (Self-Contribution)'),
-          songUrl: songUrl.trim(),
-          songPlatform: parsedSong ? parsedSong.platform : null,
-          songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
-          tagline: {
-            es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
-            en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
-          },
-          bio: {
-            es: paragraph.trim(),
-            en: paragraph.trim()
-          },
-          storyText: {
-            es: paragraph.trim(),
-            en: paragraph.trim()
-          },
-          isUserSubmitted: true,
-          contributorAuth: authUser ? authUser.provider : 'verified',
-          submittedAt: new Date().toLocaleDateString()
-        };
+        if (editingStoryId) {
+          // Update existing story
+          const existing = userStories.find(s => s.id === editingStoryId);
+          const storyId = editingStoryId;
+          const codePad = existing?.codePad || String(storyId).padStart(3, '0');
+          const number = existing?.number || storyId;
 
-        storyAudio.playSuccess();
-        onAddStory(newStory);
-        setSuccessStory(newStory);
+          const updatedStory = {
+            ...(existing || {}),
+            id: storyId,
+            number: number,
+            codePad: codePad,
+            name: name.trim(),
+            shortName: name.trim().split(' ')[0] || name.trim(),
+            displayTitle: name.trim(),
+            image: primaryImage,
+            images: allPhotos,
+            category: existing?.category || 'Inner Stories',
+            city: city.trim() || 'Montevideo',
+            year: parseInt(year, 10) || new Date().getFullYear(),
+            placeOfBirth: city.trim() || 'Montevideo',
+            dateOfBirth: existing?.dateOfBirth || 'Living Memory',
+            placeOfDisappearance: existing?.placeOfDisappearance || 'Living Archive',
+            dateOfDisappearance: existing?.dateOfDisappearance || 'Present & Remembered',
+            calculatedAge: existing?.calculatedAge || 'Eternal Presence',
+            artist: name.trim() + (authUser ? ' (@' + (authUser.name || authUser.username || 'Contributor') + ')' : ' (Self-Contribution)'),
+            songUrl: songUrl.trim(),
+            songPlatform: parsedSong ? parsedSong.platform : null,
+            songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
+            tagline: {
+              es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
+              en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
+            },
+            bio: {
+              es: paragraph.trim(),
+              en: paragraph.trim()
+            },
+            storyText: {
+              es: paragraph.trim(),
+              en: paragraph.trim()
+            },
+            isUserSubmitted: true,
+            contributorAuth: authUser ? authUser.provider : (existing?.contributorAuth || 'verified'),
+            submittedAt: existing?.submittedAt || new Date().toLocaleDateString(),
+            lastEditedAt: new Date().toLocaleDateString()
+          };
+
+          storyAudio.playSuccess();
+          onAddStory(updatedStory);
+          setSuccessStory(updatedStory);
+          setEditingStoryId(null);
+        } else {
+          // Create new story
+          const codePad = String(nextNumber).padStart(3, '0');
+          const newStory = {
+            id: nextNumber,
+            number: nextNumber,
+            codePad: codePad,
+            name: name.trim(),
+            shortName: name.trim().split(' ')[0] || name.trim(),
+            displayTitle: name.trim(),
+            image: primaryImage,
+            images: allPhotos,
+            category: 'Inner Stories',
+            city: city.trim() || 'Montevideo',
+            year: parseInt(year, 10) || new Date().getFullYear(),
+            placeOfBirth: city.trim() || 'Montevideo',
+            dateOfBirth: 'Living Memory',
+            placeOfDisappearance: 'Living Archive',
+            dateOfDisappearance: 'Present & Remembered',
+            calculatedAge: 'Eternal Presence',
+            artist: name.trim() + (authUser ? ' (@' + (authUser.name || authUser.username || 'Contributor') + ')' : ' (Self-Contribution)'),
+            songUrl: songUrl.trim(),
+            songPlatform: parsedSong ? parsedSong.platform : null,
+            songEmbedUrl: parsedSong ? parsedSong.embedUrl : null,
+            tagline: {
+              es: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : ''),
+              en: paragraph.trim().slice(0, 90) + (paragraph.length > 90 ? '...' : '')
+            },
+            bio: {
+              es: paragraph.trim(),
+              en: paragraph.trim()
+            },
+            storyText: {
+              es: paragraph.trim(),
+              en: paragraph.trim()
+            },
+            isUserSubmitted: true,
+            contributorAuth: authUser ? authUser.provider : 'verified',
+            submittedAt: new Date().toLocaleDateString()
+          };
+
+          storyAudio.playSuccess();
+          onAddStory(newStory);
+          setSuccessStory(newStory);
+        }
       };
 
       const handleResetForm = () => {
+        setEditingStoryId(null);
         setPhotos(['', '', '']);
         setName(authUser ? (authUser.name || '') : '');
         setParagraph('');
@@ -8369,14 +8469,14 @@
                         </label>
                         <div className="flex gap-2">
                           <div className="bg-neutral-100 border border-black px-3 py-2.5 font-mono text-xs font-bold flex items-center gap-1.5 select-none text-neutral-800">
-                            <span>🇺🇾</span>
-                            <span>+598</span>
+                            <span>🇮🇳</span>
+                            <span>+91</span>
                           </div>
                           <input
                             type="tel"
                             value={phoneNumber}
                             onChange={(e) => { setPhoneNumber(e.target.value); setPhoneAuthError(''); }}
-                            placeholder="099 123 456"
+                            placeholder="98765 43210"
                             className="flex-1 bg-white border border-black px-3 py-2.5 font-mono text-xs focus:outline-none focus:ring-1 focus:ring-black"
                           />
                         </div>
@@ -8476,22 +8576,42 @@
             </button>
           </div>
 
-          {/* Header Banner with Assigned Registry Number */}
-          <div className="border-b border-black/15 pb-8 mb-10">
+          {/* Header Banner with Assigned Registry Number or Edit Badge */}
+          <div id="contributor-form-container" className="border-b border-black/15 pb-8 mb-10 scroll-mt-32">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                ASSIGNED ARCHIVE REGISTRY NO. #{String(nextNumber).padStart(3, '0')}
-              </div>
-              <div className="text-xs text-neutral-500 font-mono uppercase tracking-wider">
-                PERMANENT LIVING ARCHIVE
+              {editingStory ? (
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500 text-black text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-black animate-pulse"></span>
+                  EDITING ARCHIVE REGISTRY NO. #{editingStory.codePad || String(editingStory.number).padStart(3, '0')}
+                </div>
+              ) : (
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-[12px] font-mono font-bold tracking-wider uppercase shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  ASSIGNED ARCHIVE REGISTRY NO. #{String(nextNumber).padStart(3, '0')}
+                </div>
+              )}
+              <div className="flex items-center gap-3">
+                {editingStory && (
+                  <button
+                    type="button"
+                    onClick={handleCancelEdit}
+                    className="px-2.5 py-1 text-[11px] font-mono font-bold uppercase border border-black bg-white hover:bg-neutral-100 transition-all text-neutral-800"
+                  >
+                    [ ✕ CANCEL EDIT ]
+                  </button>
+                )}
+                <div className="text-xs text-neutral-500 font-mono uppercase tracking-wider">
+                  PERMANENT LIVING ARCHIVE
+                </div>
               </div>
             </div>
             <h1 className="text-3xl md:text-4xl font-serif font-bold text-black tracking-tight mb-2">
-              Add Your Story to the Memorial
+              {editingStory ? 'Edit Archive Submission' : 'Add Your Story to the Memorial'}
             </h1>
             <p className="text-sm font-serif text-neutral-600 max-w-2xl leading-relaxed">
-              Contribute your personal memory, portrait, and voice. Every submission receives a permanent assigned sequential number in the archive alongside the 197 illustrated stories.
+              {editingStory
+                ? `You are currently modifying registry entry #${editingStory.codePad || editingStory.number}. Changes will immediately update in the living memorial archive.`
+                : 'Contribute your personal memory, portrait, and voice. Every submission receives a permanent assigned sequential number in the archive alongside the 197 illustrated stories.'}
             </p>
           </div>
 
@@ -8500,10 +8620,10 @@
             <div className="bg-white border-2 border-black p-6 md:p-8 shadow-2xl mb-12 animate-fadeIn">
               <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-6">
                 <div className="flex items-center gap-2 text-emerald-700 font-bold text-sm uppercase tracking-wide">
-                  <span>✓</span> ENTRY #{successStory.codePad} RECORDED SUCCESSFULLY
+                  <span>✓</span> ENTRY #{successStory.codePad} {successStory.lastEditedAt ? 'UPDATED' : 'RECORDED'} SUCCESSFULLY
                 </div>
                 <div className="text-xs text-neutral-500 font-mono">
-                  {successStory.submittedAt}
+                  {successStory.lastEditedAt ? `Edited ${successStory.lastEditedAt}` : successStory.submittedAt}
                 </div>
               </div>
               
@@ -8517,11 +8637,11 @@
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-black">{successStory.name}</h3>
                   <p className="font-mono text-xs text-neutral-700 line-clamp-3 leading-relaxed whitespace-pre-line">
-                    {successStory.bio.en}
+                    {successStory.bio?.en || successStory.storyText?.en}
                   </p>
                   {successStory.songEmbedUrl && (
                     <div className="text-xs font-mono text-emerald-700 font-semibold pt-1 flex items-center gap-1.5">
-                      <span>🎵</span> {successStory.songPlatform.toUpperCase()} SONG LINKED
+                      <span>🎵</span> {successStory.songPlatform?.toUpperCase()} SONG LINKED
                     </div>
                   )}
                 </div>
@@ -8529,12 +8649,21 @@
 
               <div className="flex flex-wrap gap-4 pt-6 mt-6 border-t border-black/10">
                 <button
+                  type="button"
                   onClick={() => onSelectStory(successStory)}
                   className="px-6 py-3 bg-black text-white hover:bg-neutral-800 text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-md"
                 >
                   [ VIEW YOUR STORY DETAIL ↗ ]
                 </button>
                 <button
+                  type="button"
+                  onClick={() => handleStartEdit(successStory)}
+                  className="px-5 py-3 border-2 border-black bg-amber-400 hover:bg-amber-300 text-black text-xs font-mono font-bold tracking-wider uppercase transition-all shadow-sm"
+                >
+                  [ ✎ EDIT THIS ENTRY ]
+                </button>
+                <button
+                  type="button"
                   onClick={handleResetForm}
                   className="px-5 py-3 border border-black text-black hover:bg-black hover:text-white text-xs font-mono font-bold tracking-wider uppercase transition-all"
                 >
